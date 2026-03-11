@@ -3,36 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>캠핏 체험 파트너 모집</title>
+    <title>캠핏 체험 | 캠핑장 전용 체험 자동화 시스템</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --green-primary: #4BB56A;
-            --green-dark: #3A9A56;
-            --green-light: #E8F5EC;
-            --green-bg: #F4FAF6;
-            --text-primary: #1A1A1A;
-            --text-secondary: #555555;
-            --text-muted: #888888;
+            --green: #01DF82;
+            --green-dark: #00C472;
+            --green-light: #E6FFF4;
+            --green-bg: #F0FFF8;
+            --dark: #0F1923;
+            --dark-soft: #1A2A38;
+            --text-primary: #111827;
+            --text-secondary: #4B5563;
+            --text-muted: #9CA3AF;
             --white: #FFFFFF;
-            --gray-bg: #F7F8FA;
-            --gray-border: #E5E8EB;
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
-            --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+            --gray-bg: #F8FAFB;
+            --gray-border: #E5E7EB;
+            --lime: #C9FF00;
+            --blue: #1975FF;
+            --amber: #FFC107;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
             --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
-            --radius: 16px;
-            --radius-sm: 12px;
+            --radius: 20px;
+            --radius-sm: 14px;
+            --radius-xs: 10px;
         }
 
         body {
-            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--text-primary);
             background: var(--white);
             -webkit-font-smoothing: antialiased;
@@ -42,16 +44,13 @@
         .container {
             max-width: 480px;
             margin: 0 auto;
-            padding: 0;
             overflow-x: hidden;
         }
 
-        /* ===================== */
-        /* 1. HERO */
-        /* ===================== */
+        /* ============ HERO ============ */
         .hero {
-            background: linear-gradient(160deg, #4BB56A 0%, #3A9A56 50%, #2D8045 100%);
-            padding: 56px 24px 48px;
+            background: var(--dark);
+            padding: 52px 24px 44px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -60,22 +59,22 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: -40%;
-            right: -30%;
-            width: 300px;
-            height: 300px;
-            background: rgba(255,255,255,0.06);
+            top: -60%;
+            right: -40%;
+            width: 360px;
+            height: 360px;
+            background: radial-gradient(circle, rgba(1,223,130,0.15) 0%, transparent 70%);
             border-radius: 50%;
         }
 
         .hero::after {
             content: '';
             position: absolute;
-            bottom: -20%;
-            left: -20%;
-            width: 200px;
-            height: 200px;
-            background: rgba(255,255,255,0.04);
+            bottom: -40%;
+            left: -30%;
+            width: 260px;
+            height: 260px;
+            background: radial-gradient(circle, rgba(201,255,0,0.08) 0%, transparent 70%);
             border-radius: 50%;
         }
 
@@ -84,142 +83,128 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
             position: relative;
             z-index: 1;
         }
 
         .hero-logo {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
         }
 
         .hero-brand-name {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
             color: var(--white);
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
-        .hero-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            color: var(--white);
-            font-size: 16px;
-            font-weight: 700;
-            padding: 10px 24px;
+        .hero-new-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--green);
+            color: var(--dark);
+            font-size: 13px;
+            font-weight: 800;
+            padding: 8px 18px;
             border-radius: 30px;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
             position: relative;
             z-index: 1;
             letter-spacing: -0.2px;
+        }
+
+        .hero-new-badge .pulse {
+            width: 8px;
+            height: 8px;
+            background: var(--dark);
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
         }
 
         .hero h1 {
             font-size: 26px;
             font-weight: 800;
             color: var(--white);
-            line-height: 1.4;
+            line-height: 1.45;
             margin-bottom: 16px;
             position: relative;
             z-index: 1;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.8px;
             word-break: keep-all;
         }
 
         .hero h1 em {
             font-style: normal;
-            color: #FFE566;
+            color: var(--green);
         }
 
         .hero p {
             font-size: 15px;
-            color: rgba(255,255,255,0.85);
-            line-height: 1.6;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.65;
             position: relative;
             z-index: 1;
             word-break: keep-all;
         }
 
-        /* ===================== */
-        /* 2. CAMFIT INTRO */
-        /* ===================== */
-        .intro {
-            padding: 40px 24px;
+        /* ============ STATS BAR ============ */
+        .stats-bar {
             background: var(--white);
-        }
-
-        .intro-label {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--green-primary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-
-        .intro-title {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            line-height: 1.5;
-            word-break: keep-all;
-        }
-
-        .stats-grid {
+            padding: 28px 24px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            border-bottom: 1px solid var(--gray-border);
         }
 
-        .stat-card {
-            background: var(--green-bg);
-            border-radius: var(--radius-sm);
-            padding: 20px 16px;
+        .stat-item {
             text-align: center;
         }
 
-        .stat-number {
-            font-size: 24px;
+        .stat-num {
+            font-size: 22px;
             font-weight: 800;
             color: var(--green-dark);
-            margin-bottom: 4px;
             letter-spacing: -0.5px;
         }
 
         .stat-label {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-muted);
             font-weight: 500;
+            margin-top: 4px;
         }
 
-        /* ===================== */
-        /* 3. WHAT IS */
-        /* ===================== */
-        .what-is {
-            padding: 48px 24px;
-            background: var(--gray-bg);
-        }
-
+        /* ============ SECTION COMMON ============ */
         .section-tag {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             font-size: 12px;
             font-weight: 700;
-            color: var(--green-primary);
+            color: var(--green-dark);
             background: var(--green-light);
-            padding: 5px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         .section-title {
             font-size: 22px;
             font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             line-height: 1.4;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.6px;
             word-break: keep-all;
         }
 
@@ -230,55 +215,158 @@
             word-break: keep-all;
         }
 
-        .flow-diagram {
-            margin-top: 28px;
+        /* ============ WHY EXPERIENCE ============ */
+        .why {
+            padding: 48px 24px;
             background: var(--white);
-            border-radius: var(--radius);
-            padding: 24px 20px;
-            box-shadow: var(--shadow-sm);
         }
 
-        .flow-step {
+        .why-cards {
+            margin-top: 24px;
             display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 12px 0;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .flow-step + .flow-step {
-            border-top: 1px dashed var(--gray-border);
+        .why-card {
+            background: var(--gray-bg);
+            border-radius: var(--radius-sm);
+            padding: 22px 20px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
         }
 
-        .flow-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
+        .why-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
             background: var(--green-light);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 22px;
             flex-shrink: 0;
         }
 
-        .flow-text {
-            font-size: 14px;
-            font-weight: 500;
+        .why-card-text h3 {
+            font-size: 15px;
+            font-weight: 700;
             color: var(--text-primary);
-            line-height: 1.4;
+            margin-bottom: 4px;
+            letter-spacing: -0.3px;
         }
 
-        .flow-text span {
-            display: block;
-            font-size: 12px;
-            color: var(--text-muted);
-            font-weight: 400;
-            margin-top: 2px;
+        .why-card-text p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            word-break: keep-all;
         }
 
-        /* ===================== */
-        /* 4. PHOTO GALLERY */
-        /* ===================== */
+        .why-highlight {
+            margin-top: 20px;
+            background: var(--dark);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .why-highlight p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.7;
+        }
+
+        .why-highlight strong {
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        /* ============ HOW SYSTEM ============ */
+        .how-system {
+            padding: 48px 24px;
+            background: var(--green-bg);
+        }
+
+        .system-flow {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .flow-item {
+            display: flex;
+            gap: 16px;
+            position: relative;
+            padding-bottom: 24px;
+        }
+
+        .flow-item:last-child { padding-bottom: 0; }
+
+        .flow-num-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .flow-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--green);
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .flow-line {
+            width: 2px;
+            flex: 1;
+            background: rgba(1,223,130,0.3);
+            margin-top: 6px;
+        }
+
+        .flow-content {
+            background: var(--white);
+            border-radius: var(--radius-xs);
+            padding: 16px;
+            box-shadow: var(--shadow-sm);
+            flex: 1;
+        }
+
+        .flow-content h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .flow-content p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            word-break: keep-all;
+        }
+
+        .flow-auto-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--green-dark);
+            background: var(--green-light);
+            padding: 2px 8px;
+            border-radius: 6px;
+            margin-top: 6px;
+        }
+
+        /* ============ EXPERIENCE GALLERY ============ */
         .gallery {
             padding: 48px 0;
             background: var(--white);
@@ -288,12 +376,15 @@
             padding: 0 24px;
         }
 
-        .gallery-subtitle {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            line-height: 1.6;
-            word-break: keep-all;
+        .gallery-count {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--green-dark);
+            background: var(--green-light);
+            padding: 4px 10px;
+            border-radius: 8px;
+            margin-bottom: 16px;
         }
 
         .gallery-scroll {
@@ -302,28 +393,25 @@
             overflow-x: scroll;
             -webkit-overflow-scrolling: touch;
             scroll-snap-type: x mandatory;
-            padding: 0 24px 12px 24px;
+            padding: 24px 24px 12px 24px;
         }
 
-        .gallery-scroll::-webkit-scrollbar {
-            height: 0;
-            display: none;
-        }
+        .gallery-scroll::-webkit-scrollbar { height: 0; display: none; }
 
         .gallery-item {
-            flex: 0 0 75%;
-            min-width: 260px;
-            max-width: 300px;
+            flex: 0 0 72%;
+            min-width: 250px;
+            max-width: 290px;
             scroll-snap-align: start;
             border-radius: var(--radius-sm);
             overflow: hidden;
             position: relative;
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--shadow-md);
         }
 
         .gallery-item img {
             width: 100%;
-            height: 200px;
+            height: 190px;
             object-fit: cover;
             display: block;
         }
@@ -333,9 +421,9 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            background: linear-gradient(transparent, rgba(0,0,0,0.75));
             color: var(--white);
-            padding: 24px 14px 12px;
+            padding: 28px 14px 12px;
             font-size: 13px;
             font-weight: 600;
         }
@@ -348,199 +436,161 @@
             padding: 0 24px;
         }
 
-        /* ===================== */
-        /* 5. BENEFITS */
-        /* ===================== */
-        .benefits {
-            padding: 48px 24px;
-            background: var(--green-bg);
-        }
-
-        .benefit-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-top: 8px;
-        }
-
-        .benefit-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 24px 20px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .benefit-card-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: var(--green-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            margin-bottom: 14px;
-        }
-
-        .benefit-card h3 {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-            letter-spacing: -0.3px;
-        }
-
-        .benefit-card p {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            word-break: keep-all;
-        }
-
-        /* ===================== */
-        /* 6. REVENUE */
-        /* ===================== */
+        /* ============ REVENUE ============ */
         .revenue {
-            padding: 48px 24px;
-            background: var(--white);
-        }
-
-        .revenue-diagram {
-            margin-top: 24px;
-            background: linear-gradient(160deg, #4BB56A 0%, #3A9A56 100%);
-            border-radius: var(--radius);
-            padding: 32px 24px;
-            color: var(--white);
-        }
-
-        .revenue-flow {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .revenue-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 14px 0;
-        }
-
-        .revenue-box {
-            background: rgba(255,255,255,0.2);
-            border-radius: 12px;
-            padding: 14px 18px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 600;
-            flex: 1;
-            max-width: 140px;
-        }
-
-        .revenue-box small {
-            display: block;
-            font-size: 11px;
-            font-weight: 400;
-            opacity: 0.8;
-            margin-top: 4px;
-        }
-
-        .revenue-arrow {
-            font-size: 20px;
-            opacity: 0.7;
-        }
-
-        .revenue-highlight {
-            margin-top: 20px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 12px;
-            padding: 16px;
-            text-align: center;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .revenue-highlight strong {
-            color: #FFE566;
-        }
-
-        /* ===================== */
-        /* 7. HOW IT WORKS */
-        /* ===================== */
-        .how-it-works {
             padding: 48px 24px;
             background: var(--gray-bg);
         }
 
-        .timeline {
+        .revenue-diagram {
             margin-top: 24px;
         }
 
-        .timeline-item {
-            display: flex;
-            gap: 16px;
-            position: relative;
-            padding-bottom: 28px;
-        }
-
-        .timeline-item:last-child {
-            padding-bottom: 0;
-        }
-
-        .timeline-dot-wrap {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex-shrink: 0;
-        }
-
-        .timeline-dot {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--green-primary);
+        .revenue-concept {
+            background: var(--dark);
+            border-radius: var(--radius) var(--radius) 0 0;
+            padding: 28px 20px;
             color: var(--white);
+            text-align: center;
+        }
+
+        .revenue-concept h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .revenue-formula {
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .rev-box {
+            background: rgba(255,255,255,0.12);
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .rev-box.highlight {
+            background: var(--green);
+            color: var(--dark);
+            font-weight: 800;
+        }
+
+        .rev-op {
+            font-size: 18px;
+            opacity: 0.5;
+        }
+
+        .grade-table {
+            background: var(--white);
+            border-radius: 0 0 var(--radius) var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .grade-table-title {
+            padding: 18px 20px 10px;
             font-size: 14px;
             font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .timeline-line {
-            width: 2px;
-            flex: 1;
-            background: var(--green-light);
-            margin-top: 8px;
-        }
-
-        .timeline-content {
-            background: var(--white);
-            border-radius: var(--radius-sm);
-            padding: 18px 16px;
-            box-shadow: var(--shadow-sm);
-            flex: 1;
-        }
-
-        .timeline-content h4 {
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: 6px;
             color: var(--text-primary);
         }
 
-        .timeline-content p {
-            font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            word-break: keep-all;
+        .grade-row {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            border-top: 1px solid var(--gray-border);
+            gap: 12px;
         }
 
-        /* ===================== */
-        /* 8. SYSTEM PREVIEW */
-        /* ===================== */
+        .grade-badge {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .grade-s { background: var(--green); color: var(--dark); }
+        .grade-a { background: var(--blue); }
+        .grade-b { background: #6B7280; }
+
+        .grade-info {
+            flex: 1;
+        }
+
+        .grade-info .name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .grade-info .desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .grade-rate {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--green-dark);
+            flex-shrink: 0;
+        }
+
+        .revenue-example {
+            margin-top: 16px;
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--green);
+        }
+
+        .revenue-example h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .example-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .example-row.total {
+            border-top: 1px dashed var(--gray-border);
+            margin-top: 6px;
+            padding-top: 10px;
+            font-weight: 700;
+            color: var(--green-dark);
+            font-size: 15px;
+        }
+
+        .revenue-note {
+            margin-top: 12px;
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* ============ SYSTEM PREVIEW ============ */
         .system {
             padding: 48px 24px;
             background: var(--white);
@@ -550,7 +600,7 @@
             margin-top: 24px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
         }
 
         .system-shot {
@@ -582,101 +632,146 @@
             color: var(--text-muted);
         }
 
-        /* ===================== */
-        /* 9. TARGET */
-        /* ===================== */
-        .target {
+        /* ============ ZERO COST ============ */
+        .zero-cost {
             padding: 48px 24px;
-            background: var(--gray-bg);
+            background: var(--green-bg);
         }
 
-        .target-desc {
-            font-size: 15px;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 20px;
-            word-break: keep-all;
-        }
-
-        .target-cards {
+        .zero-list {
+            margin-top: 20px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
-        .target-card {
+        .zero-item {
             background: var(--white);
-            border-radius: var(--radius);
-            padding: 24px 20px;
+            border-radius: var(--radius-xs);
+            padding: 18px 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
             box-shadow: var(--shadow-sm);
-            border-left: 4px solid var(--green-primary);
         }
 
-        .target-card h3 {
+        .zero-check {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--green);
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--text-primary);
+            font-weight: 800;
+            flex-shrink: 0;
         }
 
-        .target-card p {
+        .zero-text {
             font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.7;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
             word-break: keep-all;
         }
 
-        /* ===================== */
-        /* 10. FAQ */
-        /* ===================== */
-        .faq {
+        .zero-text span {
+            display: block;
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* ============ CURRENT STATUS ============ */
+        .status {
             padding: 48px 24px;
             background: var(--white);
+        }
+
+        .status-grid {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .status-card {
+            background: var(--gray-bg);
+            border-radius: var(--radius-sm);
+            padding: 20px 16px;
+            text-align: center;
+        }
+
+        .status-num {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: -1px;
+        }
+
+        .status-num em {
+            font-style: normal;
+            color: var(--green-dark);
+        }
+
+        .status-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        /* ============ FAQ ============ */
+        .faq {
+            padding: 48px 24px;
+            background: var(--gray-bg);
         }
 
         .faq-list {
             margin-top: 20px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .faq-item {
-            background: var(--gray-bg);
+            background: var(--white);
             border-radius: var(--radius-sm);
             padding: 20px;
+            box-shadow: var(--shadow-sm);
         }
 
         .faq-q {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 10px;
             display: flex;
             gap: 8px;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         .faq-q-mark {
-            color: var(--green-primary);
+            color: var(--green-dark);
             font-weight: 800;
             flex-shrink: 0;
         }
 
         .faq-a {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-secondary);
             line-height: 1.7;
             padding-left: 22px;
             word-break: keep-all;
         }
 
-        /* ===================== */
-        /* 11. CTA */
-        /* ===================== */
+        /* ============ CTA ============ */
         .cta {
             padding: 48px 24px 64px;
-            background: linear-gradient(160deg, #4BB56A 0%, #3A9A56 50%, #2D8045 100%);
+            background: var(--dark);
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -685,11 +780,11 @@
         .cta::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -30%;
+            top: -40%;
+            right: -30%;
             width: 300px;
             height: 300px;
-            background: rgba(255,255,255,0.04);
+            background: radial-gradient(circle, rgba(1,223,130,0.12) 0%, transparent 70%);
             border-radius: 50%;
         }
 
@@ -698,16 +793,21 @@
             font-weight: 800;
             color: var(--white);
             margin-bottom: 12px;
-            line-height: 1.4;
+            line-height: 1.45;
             position: relative;
             z-index: 1;
             letter-spacing: -0.5px;
             word-break: keep-all;
         }
 
+        .cta h2 em {
+            font-style: normal;
+            color: var(--green);
+        }
+
         .cta p {
             font-size: 14px;
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.6);
             margin-bottom: 28px;
             position: relative;
             z-index: 1;
@@ -717,14 +817,14 @@
 
         .cta-btn {
             display: inline-block;
-            background: var(--white);
-            color: var(--green-dark);
+            background: var(--green);
+            color: var(--dark);
             font-size: 16px;
-            font-weight: 700;
+            font-weight: 800;
             padding: 16px 48px;
             border-radius: 50px;
             text-decoration: none;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 20px rgba(1,223,130,0.35);
             transition: transform 0.2s, box-shadow 0.2s;
             position: relative;
             z-index: 1;
@@ -738,14 +838,12 @@
         .cta-contact {
             margin-top: 20px;
             font-size: 13px;
-            color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.4);
             position: relative;
             z-index: 1;
         }
 
-        /* ===================== */
-        /* FLOATING CTA */
-        /* ===================== */
+        /* ============ FLOATING CTA ============ */
         .floating-cta {
             position: fixed;
             bottom: 0;
@@ -753,30 +851,28 @@
             transform: translateX(-50%);
             width: 100%;
             max-width: 480px;
-            padding: 12px 24px 16px;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-top: 1px solid var(--gray-border);
+            padding: 12px 24px calc(12px + env(safe-area-inset-bottom, 0px));
+            background: rgba(15,25,35,0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255,255,255,0.08);
             z-index: 100;
             display: none;
         }
 
-        .floating-cta.visible {
-            display: block;
-        }
+        .floating-cta.visible { display: block; }
 
         .floating-cta-btn {
             display: block;
-            background: var(--green-primary);
-            color: var(--white);
+            background: var(--green);
+            color: var(--dark);
             font-size: 16px;
-            font-weight: 700;
+            font-weight: 800;
             padding: 16px;
             border-radius: 14px;
             text-decoration: none;
             text-align: center;
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 4px 16px rgba(1,223,130,0.3);
             letter-spacing: -0.3px;
         }
 
@@ -784,118 +880,156 @@
             background: var(--green-dark);
         }
 
-        /* ===================== */
-        /* FOOTER */
-        /* ===================== */
+        /* ============ FOOTER ============ */
         .footer {
             padding: 24px;
-            background: #1A1A1A;
+            background: #0A1018;
             text-align: center;
         }
 
         .footer p {
-            font-size: 12px;
-            color: #777;
-            line-height: 1.6;
+            font-size: 11px;
+            color: #555;
+            line-height: 1.7;
         }
 
-        /* ===================== */
-        /* RESPONSIVE (PC) */
-        /* ===================== */
+        /* ============ RESPONSIVE ============ */
         @media (min-width: 481px) {
-            body {
-                background: #EDEFF2;
-            }
-            .container {
-                box-shadow: 0 0 40px rgba(0,0,0,0.1);
-            }
+            body { background: #E8EAED; }
+            .container { box-shadow: 0 0 48px rgba(0,0,0,0.12); }
         }
     </style>
 </head>
 <body>
     <div class="container">
 
-        <!-- 1. HERO -->
+        <!-- HERO -->
         <section class="hero">
             <div class="hero-brand">
                 <img src="images/캠핏로고.png" alt="캠핏" class="hero-logo">
                 <span class="hero-brand-name">CAMFIT</span>
             </div>
-            <div class="hero-badge">체험 파트너 모집</div>
-            <h1>당신의 체험 프로그램,<br>전국 <em>1,400개</em> 캠핑장에서<br>운영하세요</h1>
-            <p>국내 1위 캠핑 플랫폼 캠핏이<br>체험 공급 파트너를 찾고 있습니다.</p>
+            <div class="hero-new-badge">
+                <span class="pulse"></span>
+                체험 자동화 시스템 오픈
+            </div>
+            <h1>우리 캠핑장에서<br><em>체험 프로그램</em>,<br>시작해보세요!</h1>
+            <p>캠핑장 전용 체험 자동화 시스템이 완성되었습니다.<br>클릭 몇 번이면 체험이 열립니다.</p>
         </section>
 
-        <!-- 2. CAMFIT INTRO -->
-        <section class="intro">
-            <div class="intro-label">CAMFIT</div>
-            <p class="intro-title">캠핏은 국내 1위 캠핑 예약 플랫폼으로,<br>전국의 캠핑장과 캠퍼를 연결합니다.</p>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">1위</div>
-                    <div class="stat-label">국내 캠핑 예약 플랫폼</div>
+        <!-- STATS BAR -->
+        <section class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-num">30+</div>
+                <div class="stat-label">체험 프로그램</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">53개</div>
+                <div class="stat-label">도입 캠핑장</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">477건</div>
+                <div class="stat-label">3개월 예약</div>
+            </div>
+        </section>
+
+        <!-- WHY EXPERIENCE -->
+        <section class="why">
+            <span class="section-tag">왜 체험인가요?</span>
+            <h2 class="section-title">체험이 있는 캠핑장은<br>다릅니다</h2>
+            <p class="section-desc">체험은 단순 부가 서비스가 아닙니다. 캠퍼에게 '이 날, 이 캠핑장에 가야 할 이유'를 만들어줍니다.</p>
+            <div class="why-cards">
+                <div class="why-card">
+                    <div class="why-card-icon">&#x1F4C8;</div>
+                    <div class="why-card-text">
+                        <h3>예약 전환율 상승</h3>
+                        <p>체험이 있는 캠핑장은 "이번 주 여기 가자!"라는 결정적 이유가 됩니다. 예약 전환율이 올라갑니다.</p>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">1,400+</div>
-                    <div class="stat-label">입점 캠핑장</div>
+                <div class="why-card">
+                    <div class="why-card-icon">&#x1F504;</div>
+                    <div class="why-card-text">
+                        <h3>재방문율 향상</h3>
+                        <p>아이들이 "거기 또 가자!"고 합니다. 체험이 만든 추억은 강력한 재방문 동기가 됩니다.</p>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">100만+</div>
-                    <div class="stat-label">월간 활성 이용자</div>
+                <div class="why-card">
+                    <div class="why-card-icon">&#x2B50;</div>
+                    <div class="why-card-text">
+                        <h3>캠핑장 차별화</h3>
+                        <p>주변에 비슷한 캠핑장이 많아도, 체험이 있으면 선택받습니다. 리뷰와 사진이 자연스럽게 쌓입니다.</p>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">1,336억</div>
-                    <div class="stat-label">연간 거래액</div>
+                <div class="why-card">
+                    <div class="why-card-icon">&#x1F4B0;</div>
+                    <div class="why-card-text">
+                        <h3>추가 수익 발생</h3>
+                        <p>체험 예약이 최소 운영 인원을 초과하면, 초과 수익의 일정 비율을 캠핑장이 가져갑니다.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="why-highlight">
+                <p>에어비앤비 데이터에 따르면,<br><strong>체험을 먼저 예약한 유저의 숙소 전환율은<br>일반 대비 3배</strong>입니다.</p>
+            </div>
+        </section>
+
+        <!-- HOW THE SYSTEM WORKS -->
+        <section class="how-system">
+            <span class="section-tag">&#x26A1; 자동화 시스템</span>
+            <h2 class="section-title">클릭 몇 번이면<br>체험이 열립니다</h2>
+            <p class="section-desc">캠핑장 사장님은 원하는 체험을 고르기만 하세요. 공급사 매칭, 고객 모집, 예약, 정산까지 캠핏이 전부 처리합니다.</p>
+            <div class="system-flow">
+                <div class="flow-item">
+                    <div class="flow-num-wrap">
+                        <div class="flow-num">1</div>
+                        <div class="flow-line"></div>
+                    </div>
+                    <div class="flow-content">
+                        <h4>체험 선택</h4>
+                        <p>어드민에서 30개 이상의 체험 중 원하는 프로그램을 고릅니다.</p>
+                    </div>
+                </div>
+                <div class="flow-item">
+                    <div class="flow-num-wrap">
+                        <div class="flow-num">2</div>
+                        <div class="flow-line"></div>
+                    </div>
+                    <div class="flow-content">
+                        <h4>공급사 자동 매칭</h4>
+                        <p>캠핏이 해당 지역의 검증된 체험 공급사를 자동으로 매칭합니다.</p>
+                        <span class="flow-auto-tag">AUTO</span>
+                    </div>
+                </div>
+                <div class="flow-item">
+                    <div class="flow-num-wrap">
+                        <div class="flow-num">3</div>
+                        <div class="flow-line"></div>
+                    </div>
+                    <div class="flow-content">
+                        <h4>캠퍼 모집 & 예약 오픈</h4>
+                        <p>캠핏 앱에 체험이 노출되고, 100만 이용자에게 CRM 발송. 참여자를 캠핏이 모집합니다.</p>
+                        <span class="flow-auto-tag">AUTO</span>
+                    </div>
+                </div>
+                <div class="flow-item">
+                    <div class="flow-num-wrap">
+                        <div class="flow-num">4</div>
+                    </div>
+                    <div class="flow-content">
+                        <h4>체험 진행 & 자동 정산</h4>
+                        <p>체험이 진행되고, 수익은 자동으로 정산됩니다. 사장님은 지켜보기만 하세요.</p>
+                        <span class="flow-auto-tag">AUTO</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. WHAT IS -->
-        <section class="what-is">
-            <span class="section-tag">캠핏 체험이란?</span>
-            <h2 class="section-title">캠핑장에서 진행하는<br>체험 프로그램 중개 서비스</h2>
-            <p class="section-desc">
-                캠핏이 전국 캠핑장과 체험 공급사를 연결합니다.<br>
-                공급사는 프로그램을 제공하고, 캠핏이 장소 확보와 고객 모집을 담당합니다.
-            </p>
-            <div class="flow-diagram">
-                <div class="flow-step">
-                    <div class="flow-icon">&#x1F3D5;</div>
-                    <div class="flow-text">
-                        캠핏이 캠핑장을 매칭
-                        <span>전국 네트워크에서 적합한 캠핑장 배정</span>
-                    </div>
-                </div>
-                <div class="flow-step">
-                    <div class="flow-icon">&#x1F4E2;</div>
-                    <div class="flow-text">
-                        캠핏이 캠퍼를 모집
-                        <span>앱 노출, CRM 발송으로 참여자 확보</span>
-                    </div>
-                </div>
-                <div class="flow-step">
-                    <div class="flow-icon">&#x1F3A8;</div>
-                    <div class="flow-text">
-                        공급사가 체험 진행
-                        <span>프로그램 운영에만 집중하시면 됩니다</span>
-                    </div>
-                </div>
-                <div class="flow-step">
-                    <div class="flow-icon">&#x1F4B0;</div>
-                    <div class="flow-text">
-                        회당 공급가 정산
-                        <span>정해진 공급가를 안정적으로 수령</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. GALLERY -->
+        <!-- EXPERIENCE GALLERY -->
         <section class="gallery">
             <div class="gallery-header">
-                <span class="section-tag">진행 현황</span>
-                <h2 class="section-title">매주 전국 캠핑장에서<br>활발하게 운영되고 있습니다</h2>
-                <p class="gallery-subtitle">다양한 체험 프로그램이 캠퍼 가족들에게 특별한 추억을 선사하고 있습니다.</p>
+                <span class="section-tag">체험 프로그램</span>
+                <h2 class="section-title">매주 전국 캠핑장에서<br>진행되고 있습니다</h2>
+                <p class="gallery-count">현재 30개 이상의 체험 운영 중</p>
             </div>
             <div class="gallery-scroll">
                 <div class="gallery-item">
@@ -908,7 +1042,7 @@
                 </div>
                 <div class="gallery-item">
                     <img src="images/과학캠프 체험.jpg" alt="과학캠프 체험">
-                    <div class="gallery-item-label">과학캠프 체험</div>
+                    <div class="gallery-item-label">과학캠프</div>
                 </div>
                 <div class="gallery-item">
                     <img src="images/숲 생태 체험.jpg" alt="숲 생태 체험">
@@ -916,172 +1050,176 @@
                 </div>
                 <div class="gallery-item">
                     <img src="images/석고방향제 체험.jpg" alt="석고방향제 체험">
-                    <div class="gallery-item-label">석고방향제 체험</div>
+                    <div class="gallery-item-label">석고방향제 만들기</div>
                 </div>
             </div>
-            <p class="gallery-hint">&#x2190; 좌우로 스크롤하여 더 보기</p>
+            <p class="gallery-hint">&#x2190; 좌우로 스크롤 &#x2192;</p>
         </section>
 
-        <!-- 5. BENEFITS -->
-        <section class="benefits">
-            <span class="section-tag">파트너 혜택</span>
-            <h2 class="section-title">프로그램 운영에만<br>집중하실 수 있습니다</h2>
-            <div class="benefit-list">
-                <div class="benefit-card">
-                    <div class="benefit-card-icon">&#x1F30F;</div>
-                    <h3>전국 캠핑장 네트워크</h3>
-                    <p>1,400개 이상의 캠핑장 중 프로그램에 적합한 장소를 캠핏이 매칭합니다. 직접 영업할 필요가 없습니다.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-card-icon">&#x1F468;&#x200D;&#x1F469;&#x200D;&#x1F467;&#x200D;&#x1F466;</div>
-                    <h3>고객 모집은 캠핏이</h3>
-                    <p>월 100만+ 이용자에게 앱 내 노출, 푸시 알림, CRM을 통해 체험 참여자를 모집합니다.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-card-icon">&#x1F4B8;</div>
-                    <h3>공급사 비용 부담 0원</h3>
-                    <p>장소 대여, 고객 모집, 홍보 비용 모두 캠핏이 부담합니다. 프로그램 운영만 해주시면 됩니다.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-card-icon">&#x1F4F1;</div>
-                    <h3>캠핏 앱 내 노출</h3>
-                    <p>캠핏 앱 기획전, 배너, 상세페이지에 파트너 체험이 노출되어 자연스러운 홍보가 됩니다.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. REVENUE -->
+        <!-- REVENUE -->
         <section class="revenue">
-            <span class="section-tag">수익 구조</span>
-            <h2 class="section-title">깔끔하고 안정적인<br>공급가 정산 구조</h2>
-            <p class="section-desc">인당 변동이 아닌, 회당 고정 공급가를 받는 구조입니다. 예측 가능한 수익을 확보할 수 있습니다.</p>
+            <span class="section-tag">&#x1F4B0; 수익 구조</span>
+            <h2 class="section-title">체험할수록<br>캠핑장 수익이 올라갑니다</h2>
+            <p class="section-desc">최소 운영 인원 초과 시 발생하는 수익을 캠핑장과 나눕니다. 등급이 올라갈수록 더 많이 가져가세요.</p>
             <div class="revenue-diagram">
-                <div class="revenue-flow">
-                    <div class="revenue-row">
-                        <div class="revenue-box">
-                            &#x1F9D1;&#x200D;&#x1F3A8; 공급사
-                            <small>체험 프로그램 제공</small>
+                <div class="revenue-concept">
+                    <h3>캠핑장 수익 공식</h3>
+                    <div class="revenue-formula">
+                        <div class="rev-box">초과 수익</div>
+                        <div class="rev-op">&times;</div>
+                        <div class="rev-box highlight">등급별 분배율</div>
+                        <div class="rev-op">=</div>
+                        <div class="rev-box">캠핑장 수익</div>
+                    </div>
+                </div>
+                <div class="grade-table">
+                    <div class="grade-table-title">등급별 수익 분배율</div>
+                    <div class="grade-row">
+                        <div class="grade-badge grade-s">S</div>
+                        <div class="grade-info">
+                            <div class="name">파트너 등급</div>
+                            <div class="desc">적극 운영 + 높은 성공률</div>
                         </div>
-                        <div class="revenue-arrow">&#x27A1;</div>
-                        <div class="revenue-box">
-                            &#x1F3D5; 캠핏
-                            <small>장소 + 고객 모집</small>
+                        <div class="grade-rate">30%</div>
+                    </div>
+                    <div class="grade-row">
+                        <div class="grade-badge grade-a">A</div>
+                        <div class="grade-info">
+                            <div class="name">우수 등급</div>
+                            <div class="desc">안정적 체험 운영</div>
                         </div>
+                        <div class="grade-rate">25%</div>
                     </div>
-                    <div class="revenue-row">
-                        <div class="revenue-box">
-                            &#x1F3D5; 캠핏
-                            <small>인당 체험비 수령</small>
+                    <div class="grade-row">
+                        <div class="grade-badge grade-b">B</div>
+                        <div class="grade-info">
+                            <div class="name">기본 등급</div>
+                            <div class="desc">신규 캠핑장 기본 (첫 3개월)</div>
                         </div>
-                        <div class="revenue-arrow">&#x27A1;</div>
-                        <div class="revenue-box">
-                            &#x1F9D1;&#x200D;&#x1F3A8; 공급사
-                            <small>회당 공급가 정산</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="revenue-highlight">
-                    <strong>회당 고정 공급가</strong>를 받기 때문에<br>
-                    참여 인원 변동에 대한 리스크가 없습니다.
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. HOW IT WORKS -->
-        <section class="how-it-works">
-            <span class="section-tag">운영 방식</span>
-            <h2 class="section-title">이렇게 진행됩니다</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot-wrap">
-                        <div class="timeline-dot">1</div>
-                        <div class="timeline-line"></div>
-                    </div>
-                    <div class="timeline-content">
-                        <h4>파트너 신청</h4>
-                        <p>신청서를 작성하시면 담당자가 유선으로 상세 안내 및 협의를 진행합니다.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot-wrap">
-                        <div class="timeline-dot">2</div>
-                        <div class="timeline-line"></div>
-                    </div>
-                    <div class="timeline-content">
-                        <h4>캠핑장 매칭 & 일정 확정</h4>
-                        <p>프로그램에 적합한 캠핑장을 매칭하고, 주 1회(토요일) 기준으로 일정을 조율합니다.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot-wrap">
-                        <div class="timeline-dot">3</div>
-                        <div class="timeline-line"></div>
-                    </div>
-                    <div class="timeline-content">
-                        <h4>사전 안내 (1주일 전)</h4>
-                        <p>캠핏이 참여자를 모집하고, 체험 진행 여부를 최소 1주일 전에 안내드립니다. 최소 인원 미달 시 부담 없이 취소됩니다.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot-wrap">
-                        <div class="timeline-dot">4</div>
-                        <div class="timeline-line"></div>
-                    </div>
-                    <div class="timeline-content">
-                        <h4>체험 진행 & 정산</h4>
-                        <p>캠핑장에서 체험을 진행하시면, 회당 공급가로 깔끔하게 정산됩니다.</p>
+                        <div class="grade-rate">20%</div>
                     </div>
                 </div>
             </div>
+            <div class="revenue-example">
+                <h4>&#x1F4CA; 월 수익 시뮬레이션 (S등급 기준)</h4>
+                <div class="example-row">
+                    <span>월 체험 진행</span>
+                    <span>8회</span>
+                </div>
+                <div class="example-row">
+                    <span>회당 초과 수익 (평균)</span>
+                    <span>200,000원</span>
+                </div>
+                <div class="example-row">
+                    <span>S등급 분배율</span>
+                    <span>30%</span>
+                </div>
+                <div class="example-row total">
+                    <span>캠핑장 월 수익</span>
+                    <span>480,000원</span>
+                </div>
+            </div>
+            <p class="revenue-note">* 신규 캠핑장은 첫 3개월간 B등급(20%)으로 시작합니다.<br>* 운영 실적에 따라 분기마다 등급이 조정됩니다.</p>
         </section>
 
-        <!-- 8. SYSTEM PREVIEW -->
+        <!-- SYSTEM PREVIEW -->
         <section class="system">
-            <span class="section-tag">공급사 관리 시스템</span>
-            <h2 class="section-title">체험 일정과 현황을<br>한 눈에 관리하세요</h2>
-            <p class="section-desc">캠핏 파트너 전용 시스템에서 체험 일정 확인, 참여자 현황, 정산 내역 등을 편리하게 관리할 수 있습니다.</p>
+            <span class="section-tag">&#x1F4F1; 어드민 시스템</span>
+            <h2 class="section-title">캠핑장 전용 관리 화면으로<br>모든 것을 한눈에</h2>
+            <p class="section-desc">체험 선택부터 예약 현황, 정산까지. 사장님 전용 어드민에서 편리하게 관리하세요.</p>
             <div class="system-screenshots">
                 <div class="system-shot">
                     <img src="images/체험 홈.png" alt="체험 홈 대시보드">
-                    <div class="system-shot-label">홈 <span>매칭 요청, 취소/환불, 오늘의 현장을 한눈에</span></div>
+                    <div class="system-shot-label">홈 대시보드 <span>매칭 요청, 오늘의 현장을 한눈에</span></div>
                 </div>
                 <div class="system-shot">
                     <img src="images/체험 관리.png" alt="체험 관리">
-                    <div class="system-shot-label">체험 관리 <span>등록한 체험 프로그램 정보와 세션 관리</span></div>
+                    <div class="system-shot-label">체험 관리 <span>원하는 체험을 골라 요청하세요</span></div>
                 </div>
                 <div class="system-shot">
                     <img src="images/최소 운영 인원 관리.png" alt="최소 운영 인원 관리">
-                    <div class="system-shot-label">MOQ 관리 <span>최소 운영 인원 충족 현황을 캘린더로 확인</span></div>
+                    <div class="system-shot-label">MOQ 캘린더 <span>최소 인원 충족 여부를 실시간 확인</span></div>
                 </div>
                 <div class="system-shot">
                     <img src="images/예약 관리.png" alt="예약 관리">
-                    <div class="system-shot-label">예약 관리 <span>예약 현황, 참여자 정보, 상태를 실시간 확인</span></div>
+                    <div class="system-shot-label">예약 관리 <span>참여자 정보와 예약 상태 실시간 확인</span></div>
                 </div>
                 <div class="system-shot">
                     <img src="images/정산 관리.png" alt="정산 관리">
-                    <div class="system-shot-label">정산 관리 <span>매출 추이, 정산 내역, 수수료를 투명하게</span></div>
+                    <div class="system-shot-label">정산 관리 <span>매출 추이와 정산 내역을 투명하게</span></div>
                 </div>
             </div>
         </section>
 
-        <!-- 9. TARGET -->
-        <section class="target">
-            <span class="section-tag">모집 대상</span>
-            <h2 class="section-title">이런 분을 찾고 있습니다</h2>
-            <p class="target-desc">특정 분야에 한정하지 않습니다. 아이들이 좋아하는 활동, 남녀노소 함께 즐길 수 있는 체험, 교육, 공연, 놀이 등 어떤 형태든 캠핑장에서 진행 가능한 프로그램이라면 모두 환영합니다.</p>
-            <div class="target-cards">
-                <div class="target-card">
-                    <h3>&#x1F3E2; 체험 운영 업체</h3>
-                    <p>교육, 공예, 동물, 액티비티, 공연, 요리, 자연 생태 등 분야를 불문하고 현장에서 체험 프로그램을 운영할 수 있는 업체라면 누구든 가능합니다.</p>
+        <!-- ZERO COST -->
+        <section class="zero-cost">
+            <span class="section-tag">&#x2705; 캠핑장 부담</span>
+            <h2 class="section-title">사장님이 하실 일은<br>딱 하나입니다</h2>
+            <p class="section-desc">체험 프로그램을 고르세요. 나머지는 전부 캠핏이 합니다.</p>
+            <div class="zero-list">
+                <div class="zero-item">
+                    <div class="zero-check">&#x2713;</div>
+                    <div class="zero-text">
+                        도입 비용 0원
+                        <span>시스템 사용료, 세팅비 모두 무료</span>
+                    </div>
                 </div>
-                <div class="target-card">
-                    <h3>&#x1F9D1;&#x200D;&#x1F3EB; 프리랜서 강사 · 전문가</h3>
-                    <p>특기나 전문 분야를 살려 아이들 또는 가족 단위 참여자에게 즐거운 경험을 제공할 수 있는 개인 강사, 전문가 모두 환영합니다.</p>
+                <div class="zero-item">
+                    <div class="zero-check">&#x2713;</div>
+                    <div class="zero-text">
+                        고객 모집은 캠핏이
+                        <span>앱 노출 + CRM 발송으로 참여자 확보</span>
+                    </div>
+                </div>
+                <div class="zero-item">
+                    <div class="zero-check">&#x2713;</div>
+                    <div class="zero-text">
+                        공급사 섭외도 캠핏이
+                        <span>검증된 체험 공급사를 자동 매칭</span>
+                    </div>
+                </div>
+                <div class="zero-item">
+                    <div class="zero-check">&#x2713;</div>
+                    <div class="zero-text">
+                        최소 인원 미달? 리스크 없음
+                        <span>1주일 전 안내, 미달 시 자동 취소 (비용 0원)</span>
+                    </div>
+                </div>
+                <div class="zero-item">
+                    <div class="zero-check">&#x2713;</div>
+                    <div class="zero-text">
+                        정산도 자동
+                        <span>체험 종료 후 시스템에서 자동 정산 처리</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 10. FAQ -->
+        <!-- CURRENT STATUS -->
+        <section class="status">
+            <span class="section-tag">운영 현황</span>
+            <h2 class="section-title">이미 전국에서<br>운영되고 있습니다</h2>
+            <div class="status-grid">
+                <div class="status-card">
+                    <div class="status-num"><em>53</em>개</div>
+                    <div class="status-label">체험 도입 캠핑장</div>
+                </div>
+                <div class="status-card">
+                    <div class="status-num"><em>30</em>+</div>
+                    <div class="status-label">체험 종류</div>
+                </div>
+                <div class="status-card">
+                    <div class="status-num"><em>477</em>건</div>
+                    <div class="status-label">3개월 누적 예약</div>
+                </div>
+                <div class="status-card">
+                    <div class="status-num"><em>100</em>만+</div>
+                    <div class="status-label">캠핏 월간 이용자</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
         <section class="faq">
             <span class="section-tag">FAQ</span>
             <h2 class="section-title">자주 묻는 질문</h2>
@@ -1089,39 +1227,46 @@
                 <div class="faq-item">
                     <div class="faq-q">
                         <span class="faq-q-mark">Q.</span>
+                        비용이 정말 없나요?
+                    </div>
+                    <p class="faq-a">네, 캠핑장에 부과되는 비용은 전혀 없습니다. 시스템 사용료, 공급사 섭외비, 홍보비 모두 캠핏이 부담합니다. 캠핑장은 체험을 선택하기만 하시면 됩니다.</p>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">
+                        <span class="faq-q-mark">Q.</span>
                         최소 인원이 안 모이면 어떻게 되나요?
                     </div>
-                    <p class="faq-a">체험 진행 여부는 최소 1주일 전에 안내드립니다. 최소 인원 미달 시 해당 회차는 자동 취소되며, 공급사에 별도의 비용이나 페널티는 없습니다.</p>
+                    <p class="faq-a">체험 진행 여부는 최소 1주일 전에 안내드립니다. 최소 인원 미달 시 해당 회차는 자동 취소되며, 캠핑장에 어떤 비용이나 페널티도 없습니다.</p>
                 </div>
                 <div class="faq-item">
                     <div class="faq-q">
                         <span class="faq-q-mark">Q.</span>
-                        정산은 어떻게 이루어지나요?
+                        체험은 언제 진행되나요?
                     </div>
-                    <p class="faq-a">체험 진행 후, 사전에 협의된 회당 공급가 기준으로 정산됩니다. 구체적인 정산 주기와 방식은 파트너 협의 시 안내드립니다.</p>
+                    <p class="faq-a">기본적으로 매주 토요일에 진행됩니다. 어린이날, 크리스마스 등 특별한 날에는 주중에도 운영합니다. 향후 토요일 하루 2회 이상 운영으로 확대할 예정입니다.</p>
                 </div>
                 <div class="faq-item">
                     <div class="faq-q">
                         <span class="faq-q-mark">Q.</span>
-                        체험 장소는 어떻게 정해지나요?
+                        수익은 어떻게 받나요?
                     </div>
-                    <p class="faq-a">캠핏이 개발한 체험 자동화 시스템을 통해 다수의 캠핑장에서 제휴 제안이 들어옵니다. 공급사는 제안받은 캠핑장의 위치와 조건을 확인한 후 수락만 하시면, 캠핏 앱에서 바로 예약이 오픈됩니다.</p>
+                    <p class="faq-a">체험 예약이 최소 운영 인원을 초과하면, 초과분 수익의 20~30%를 캠핑장이 가져갑니다. 등급이 높을수록 분배율도 올라갑니다. 정산은 시스템에서 자동 처리됩니다.</p>
                 </div>
                 <div class="faq-item">
                     <div class="faq-q">
                         <span class="faq-q-mark">Q.</span>
-                        운영 빈도는 어떻게 되나요?
+                        등급은 어떻게 올라가나요?
                     </div>
-                    <p class="faq-a">현재 기본 매주 토요일 주 1회 운영이며, 크리스마스·어린이날 등 특별한 날에는 주중에도 진행합니다. 향후에는 토요일 하루에 2회 이상 진행할 수 있도록 시스템을 확장할 예정입니다.</p>
+                    <p class="faq-a">월간 체험 요청 수, 성공률, 고객 만족도, 현장 협조도 등을 종합 평가합니다. 분기마다 등급이 조정되며, 적극적으로 운영할수록 빠르게 S등급에 도달할 수 있습니다.</p>
                 </div>
             </div>
         </section>
 
-        <!-- 11. CTA -->
+        <!-- CTA -->
         <section class="cta" id="apply">
-            <h2>캠핏과 함께<br>새로운 무대를 열어보세요</h2>
-            <p>신청서를 작성해 주시면<br>담당자가 빠르게 연락드리겠습니다.</p>
-            <a href="https://forms.gle/rnMxfM4fq4QSRwyL8" class="cta-btn" target="_blank">파트너 신청하기</a>
+            <h2>지금 바로<br><em>체험 캠핑장</em>이 되어보세요</h2>
+            <p>아래 버튼을 누르시면<br>캠핏 담당자가 빠르게 연락드리겠습니다.</p>
+            <a href="https://forms.gle/rnMxfM4fq4QSRwyL8" class="cta-btn" target="_blank">체험 도입 신청하기</a>
             <p class="cta-contact">문의: cskim@nextedition.co.kr</p>
         </section>
 
@@ -1134,11 +1279,10 @@
 
     <!-- FLOATING CTA -->
     <div class="floating-cta" id="floatingCta">
-        <a href="https://forms.gle/rnMxfM4fq4QSRwyL8" class="floating-cta-btn" target="_blank">파트너 신청하기</a>
+        <a href="https://forms.gle/rnMxfM4fq4QSRwyL8" class="floating-cta-btn" target="_blank">체험 도입 신청하기</a>
     </div>
 
     <script>
-        // 스크롤 시 플로팅 CTA 표시
         const floatingCta = document.getElementById('floatingCta');
         const hero = document.querySelector('.hero');
         const ctaSection = document.getElementById('apply');
@@ -1154,7 +1298,6 @@
                 floatingCta.classList.remove('visible');
             }
         });
-
     </script>
 </body>
 </html>
