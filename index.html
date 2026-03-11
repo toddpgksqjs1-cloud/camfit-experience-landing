@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>캠핏 체험 | 캠핑장 전용 체험 자동화 시스템</title>
+    <title>캠핏 체험 가이드 | 캠지기용 마스터 가이드</title>
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
     <style>
@@ -12,6 +12,7 @@
         :root {
             --green: #01DF82;
             --green-dark: #00C472;
+            --green-darker: #00A85E;
             --green-light: #E6FFF4;
             --green-bg: #F0FFF8;
             --dark: #0F1923;
@@ -21,36 +22,95 @@
             --text-muted: #9CA3AF;
             --white: #FFFFFF;
             --gray-bg: #F8FAFB;
+            --gray-100: #F3F4F6;
             --gray-border: #E5E7EB;
-            --lime: #C9FF00;
             --blue: #1975FF;
+            --blue-light: #EBF3FF;
             --amber: #FFC107;
+            --amber-light: #FFF8E1;
+            --red: #FF383C;
+            --red-light: #FFF0F0;
+            --orange: #FF7300;
+            --orange-light: #FFF4EB;
+            --purple: #727CF5;
+            --purple-light: #F0F0FF;
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
             --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
-            --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
-            --radius: 20px;
-            --radius-sm: 14px;
-            --radius-xs: 10px;
+            --radius: 16px;
+            --radius-sm: 12px;
+            --radius-xs: 8px;
         }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 60px; }
 
         body {
             font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--text-primary);
             background: var(--white);
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
+            line-height: 1.7;
+            font-size: 15px;
         }
 
         .container {
-            max-width: 480px;
+            max-width: 720px;
             margin: 0 auto;
             overflow-x: hidden;
         }
 
-        /* ============ HERO ============ */
+        /* ======== TOP NAV ======== */
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(15,25,35,0.97);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .top-nav-brand img {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+        }
+
+        .top-nav-brand span {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 1px;
+        }
+
+        .top-nav-toc-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: var(--white);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .top-nav-toc-btn:active {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* ======== HERO ======== */
         .hero {
             background: var(--dark);
-            padding: 52px 24px 44px;
+            padding: 48px 24px 40px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -61,84 +121,32 @@
             position: absolute;
             top: -60%;
             right: -40%;
-            width: 360px;
-            height: 360px;
-            background: radial-gradient(circle, rgba(1,223,130,0.15) 0%, transparent 70%);
-            border-radius: 50%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(1,223,130,0.12) 0%, transparent 70%);
         }
 
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -40%;
-            left: -30%;
-            width: 260px;
-            height: 260px;
-            background: radial-gradient(circle, rgba(201,255,0,0.08) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .hero-brand {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 24px;
+        .hero-version {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--green);
+            background: rgba(1,223,130,0.15);
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 20px;
             position: relative;
             z-index: 1;
-        }
-
-        .hero-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-        }
-
-        .hero-brand-name {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--white);
-            letter-spacing: 2px;
-        }
-
-        .hero-new-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--green);
-            color: var(--dark);
-            font-size: 13px;
-            font-weight: 800;
-            padding: 8px 18px;
-            border-radius: 30px;
-            margin-bottom: 24px;
-            position: relative;
-            z-index: 1;
-            letter-spacing: -0.2px;
-        }
-
-        .hero-new-badge .pulse {
-            width: 8px;
-            height: 8px;
-            background: var(--dark);
-            border-radius: 50%;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.3); }
         }
 
         .hero h1 {
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 800;
             color: var(--white);
-            line-height: 1.45;
-            margin-bottom: 16px;
+            line-height: 1.4;
+            letter-spacing: -1px;
             position: relative;
             z-index: 1;
-            letter-spacing: -0.8px;
             word-break: keep-all;
         }
 
@@ -147,261 +155,483 @@
             color: var(--green);
         }
 
-        .hero p {
+        .hero-sub {
+            margin-top: 14px;
             font-size: 15px;
-            color: rgba(255,255,255,0.65);
-            line-height: 1.65;
+            color: rgba(255,255,255,0.55);
             position: relative;
             z-index: 1;
             word-break: keep-all;
         }
 
-        /* ============ STATS BAR ============ */
-        .stats-bar {
+        .hero-meta {
+            margin-top: 24px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.35);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ======== TOC OVERLAY ======== */
+        .toc-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 200;
+            display: none;
+            justify-content: flex-end;
+        }
+
+        .toc-overlay.open { display: flex; }
+
+        .toc-panel {
+            width: 85%;
+            max-width: 360px;
             background: var(--white);
-            padding: 28px 24px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+            height: 100%;
+            overflow-y: auto;
+            padding: 24px 20px;
+            animation: slideIn 0.25s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        .toc-panel h3 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-list li {
             border-bottom: 1px solid var(--gray-border);
         }
 
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-num {
-            font-size: 22px;
-            font-weight: 800;
-            color: var(--green-dark);
-            letter-spacing: -0.5px;
-        }
-
-        .stat-label {
-            font-size: 11px;
-            color: var(--text-muted);
+        .toc-list li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 4px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 14px;
             font-weight: 500;
-            margin-top: 4px;
         }
 
-        /* ============ SECTION COMMON ============ */
-        .section-tag {
+        .toc-list li a:active {
+            background: var(--gray-100);
+        }
+
+        .toc-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: var(--green-light);
+            color: var(--green-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        /* ======== CHAPTER COMMON ======== */
+        .chapter {
+            padding: 48px 24px;
+            border-bottom: 1px solid var(--gray-border);
+        }
+
+        .chapter:nth-child(even) {
+            background: var(--gray-bg);
+        }
+
+        .chapter-num {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             font-size: 12px;
             font-weight: 700;
             color: var(--green-dark);
             background: var(--green-light);
-            padding: 6px 14px;
+            padding: 5px 12px;
             border-radius: 20px;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
-        .section-title {
+        .chapter h2 {
             font-size: 22px;
             font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 12px;
             line-height: 1.4;
             letter-spacing: -0.6px;
+            margin-bottom: 16px;
             word-break: keep-all;
         }
 
-        .section-desc {
-            font-size: 15px;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            word-break: keep-all;
-        }
-
-        /* ============ WHY EXPERIENCE ============ */
-        .why {
-            padding: 48px 24px;
-            background: var(--white);
-        }
-
-        .why-cards {
-            margin-top: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .why-card {
-            background: var(--gray-bg);
-            border-radius: var(--radius-sm);
-            padding: 22px 20px;
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-        }
-
-        .why-card-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            background: var(--green-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            flex-shrink: 0;
-        }
-
-        .why-card-text h3 {
-            font-size: 15px;
+        .chapter h3 {
+            font-size: 17px;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 4px;
+            margin: 28px 0 12px;
             letter-spacing: -0.3px;
         }
 
-        .why-card-text p {
-            font-size: 13px;
+        .chapter h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 20px 0 8px;
+        }
+
+        .chapter p {
             color: var(--text-secondary);
-            line-height: 1.6;
+            margin-bottom: 12px;
             word-break: keep-all;
         }
 
-        .why-highlight {
-            margin-top: 20px;
-            background: var(--dark);
-            border-radius: var(--radius-sm);
-            padding: 20px;
-            text-align: center;
+        .chapter ul, .chapter ol {
+            color: var(--text-secondary);
+            padding-left: 20px;
+            margin-bottom: 12px;
         }
 
-        .why-highlight p {
+        .chapter li {
+            margin-bottom: 6px;
+            word-break: keep-all;
+        }
+
+        /* ======== REUSABLE COMPONENTS ======== */
+        .info-box {
+            background: var(--green-light);
+            border-left: 4px solid var(--green);
+            border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+            padding: 16px 18px;
+            margin: 16px 0;
             font-size: 14px;
-            color: rgba(255,255,255,0.7);
+            color: var(--text-primary);
             line-height: 1.7;
         }
 
-        .why-highlight strong {
-            color: var(--green);
+        .warn-box {
+            background: var(--amber-light);
+            border-left: 4px solid var(--amber);
+            border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+            padding: 16px 18px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .danger-box {
+            background: var(--red-light);
+            border-left: 4px solid var(--red);
+            border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+            padding: 16px 18px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .tip-box {
+            background: var(--blue-light);
+            border-left: 4px solid var(--blue);
+            border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+            padding: 16px 18px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .role-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 13px;
+        }
+
+        .role-table th {
+            background: var(--dark);
+            color: var(--white);
+            padding: 12px 14px;
+            text-align: left;
             font-weight: 700;
         }
 
-        /* ============ HOW SYSTEM ============ */
-        .how-system {
-            padding: 48px 24px;
-            background: var(--green-bg);
+        .role-table th:first-child { border-radius: var(--radius-xs) 0 0 0; }
+        .role-table th:last-child { border-radius: 0 var(--radius-xs) 0 0; }
+
+        .role-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--gray-border);
+            vertical-align: top;
+            line-height: 1.6;
         }
 
-        .system-flow {
-            margin-top: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 0;
+        .role-table tr:last-child td:first-child { border-radius: 0 0 0 var(--radius-xs); }
+        .role-table tr:last-child td:last-child { border-radius: 0 0 var(--radius-xs) 0; }
+
+        .role-table .check { color: var(--green-dark); font-weight: 700; }
+        .role-table .x-mark { color: var(--text-muted); }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 16px 0;
         }
 
-        .flow-item {
+        .card {
+            background: var(--white);
+            border: 1px solid var(--gray-border);
+            border-radius: var(--radius-sm);
+            padding: 16px 14px;
+        }
+
+        .card-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .card h5 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .card p {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+
+        .card-full {
+            background: var(--white);
+            border: 1px solid var(--gray-border);
+            border-radius: var(--radius-sm);
+            padding: 18px 16px;
+            margin: 10px 0;
+        }
+
+        .card-full h5 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .card-full p {
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        .step-flow {
+            margin: 20px 0;
+        }
+
+        .step-item {
             display: flex;
-            gap: 16px;
+            gap: 14px;
+            padding-bottom: 20px;
             position: relative;
-            padding-bottom: 24px;
         }
 
-        .flow-item:last-child { padding-bottom: 0; }
+        .step-item:last-child { padding-bottom: 0; }
 
-        .flow-num-wrap {
+        .step-num-wrap {
             display: flex;
             flex-direction: column;
             align-items: center;
             flex-shrink: 0;
         }
 
-        .flow-num {
-            width: 36px;
-            height: 36px;
+        .step-num {
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             background: var(--green);
             color: var(--dark);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 800;
-            flex-shrink: 0;
         }
 
-        .flow-line {
+        .step-line {
             width: 2px;
             flex: 1;
-            background: rgba(1,223,130,0.3);
+            background: rgba(1,223,130,0.25);
             margin-top: 6px;
         }
 
-        .flow-content {
-            background: var(--white);
-            border-radius: var(--radius-xs);
-            padding: 16px;
-            box-shadow: var(--shadow-sm);
+        .step-content {
             flex: 1;
+            padding-top: 4px;
         }
 
-        .flow-content h4 {
+        .step-content h5 {
             font-size: 15px;
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 4px;
         }
 
-        .flow-content p {
+        .step-content p {
             font-size: 13px;
             color: var(--text-secondary);
-            line-height: 1.6;
-            word-break: keep-all;
+            margin-bottom: 0;
         }
 
-        .flow-auto-tag {
+        .step-badge {
             display: inline-block;
             font-size: 11px;
             font-weight: 700;
-            color: var(--green-dark);
-            background: var(--green-light);
             padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 4px;
+        }
+
+        .badge-auto { background: var(--green-light); color: var(--green-dark); }
+        .badge-camp { background: var(--blue-light); color: var(--blue); }
+        .badge-camfit { background: var(--purple-light); color: var(--purple); }
+
+        .grade-card {
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .grade-card .grade-letter {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .grade-s .grade-letter { background: var(--green); color: var(--dark); }
+        .grade-a .grade-letter { background: var(--blue); }
+        .grade-b .grade-letter { background: #6B7280; }
+        .grade-c .grade-letter { background: var(--orange); }
+        .grade-d .grade-letter { background: var(--red); }
+
+        .grade-s { background: var(--green-light); }
+        .grade-a { background: var(--blue-light); }
+        .grade-b { background: var(--gray-100); }
+        .grade-c { background: var(--orange-light); }
+        .grade-d { background: var(--red-light); }
+
+        .grade-info { flex: 1; }
+        .grade-info .name { font-size: 15px; font-weight: 700; color: var(--text-primary); }
+        .grade-info .desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+        .grade-rate { font-size: 22px; font-weight: 800; color: var(--green-dark); flex-shrink: 0; }
+
+        .sim-box {
+            background: var(--dark);
+            border-radius: var(--radius);
+            padding: 24px 20px;
+            margin: 16px 0;
+            color: var(--white);
+        }
+
+        .sim-box h4 { color: var(--white); font-size: 15px; font-weight: 700; margin-bottom: 16px; }
+
+        .sim-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .sim-row.total {
+            border-bottom: none;
+            border-top: 2px solid var(--green);
+            margin-top: 8px;
+            padding-top: 12px;
+            color: var(--green);
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+            margin: 12px 0;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--gray-border);
+            font-size: 14px;
+        }
+
+        .checklist li:last-child { border-bottom: none; }
+
+        .checklist .ck {
+            width: 22px;
+            height: 22px;
             border-radius: 6px;
-            margin-top: 6px;
-        }
-
-        /* ============ EXPERIENCE GALLERY ============ */
-        .gallery {
-            padding: 48px 0;
-            background: var(--white);
-        }
-
-        .gallery-header {
-            padding: 0 24px;
-        }
-
-        .gallery-count {
-            display: inline-block;
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--green-dark);
             background: var(--green-light);
-            padding: 4px 10px;
-            border-radius: 8px;
-            margin-bottom: 16px;
+            color: var(--green-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            flex-shrink: 0;
+            margin-top: 1px;
         }
 
+        /* Gallery */
         .gallery-scroll {
             display: flex;
             gap: 12px;
             overflow-x: scroll;
             -webkit-overflow-scrolling: touch;
             scroll-snap-type: x mandatory;
-            padding: 24px 24px 12px 24px;
+            padding: 16px 0 8px;
+            margin: 0 -24px;
+            padding-left: 24px;
+            padding-right: 24px;
         }
 
-        .gallery-scroll::-webkit-scrollbar { height: 0; display: none; }
+        .gallery-scroll::-webkit-scrollbar { display: none; }
 
         .gallery-item {
-            flex: 0 0 72%;
-            min-width: 250px;
-            max-width: 290px;
+            flex: 0 0 70%;
+            min-width: 240px;
+            max-width: 280px;
             scroll-snap-align: start;
             border-radius: var(--radius-sm);
             overflow: hidden;
@@ -411,7 +641,7 @@
 
         .gallery-item img {
             width: 100%;
-            height: 190px;
+            height: 180px;
             object-fit: cover;
             display: block;
         }
@@ -423,334 +653,52 @@
             right: 0;
             background: linear-gradient(transparent, rgba(0,0,0,0.75));
             color: var(--white);
-            padding: 28px 14px 12px;
+            padding: 24px 12px 10px;
             font-size: 13px;
             font-weight: 600;
         }
 
-        .gallery-hint {
-            text-align: center;
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 8px;
-            padding: 0 24px;
-        }
-
-        /* ============ REVENUE ============ */
-        .revenue {
-            padding: 48px 24px;
-            background: var(--gray-bg);
-        }
-
-        .revenue-diagram {
-            margin-top: 24px;
-        }
-
-        .revenue-concept {
-            background: var(--dark);
-            border-radius: var(--radius) var(--radius) 0 0;
-            padding: 28px 20px;
-            color: var(--white);
-            text-align: center;
-        }
-
-        .revenue-concept h3 {
-            font-size: 17px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
-        .revenue-formula {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .rev-box {
-            background: rgba(255,255,255,0.12);
-            border-radius: 10px;
-            padding: 10px 14px;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .rev-box.highlight {
-            background: var(--green);
-            color: var(--dark);
-            font-weight: 800;
-        }
-
-        .rev-op {
-            font-size: 18px;
-            opacity: 0.5;
-        }
-
-        .grade-table {
-            background: var(--white);
-            border-radius: 0 0 var(--radius) var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .grade-table-title {
-            padding: 18px 20px 10px;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .grade-row {
-            display: flex;
-            align-items: center;
-            padding: 12px 20px;
-            border-top: 1px solid var(--gray-border);
-            gap: 12px;
-        }
-
-        .grade-badge {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 15px;
-            font-weight: 800;
-            color: var(--white);
-            flex-shrink: 0;
-        }
-
-        .grade-s { background: var(--green); color: var(--dark); }
-        .grade-a { background: var(--blue); }
-        .grade-b { background: #6B7280; }
-
-        .grade-info {
-            flex: 1;
-        }
-
-        .grade-info .name {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .grade-info .desc {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-
-        .grade-rate {
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--green-dark);
-            flex-shrink: 0;
-        }
-
-        .revenue-example {
-            margin-top: 16px;
-            background: var(--white);
-            border-radius: var(--radius-sm);
-            padding: 20px;
-            box-shadow: var(--shadow-sm);
-            border-left: 4px solid var(--green);
-        }
-
-        .revenue-example h4 {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 12px;
-        }
-
-        .example-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 6px 0;
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-
-        .example-row.total {
-            border-top: 1px dashed var(--gray-border);
-            margin-top: 6px;
-            padding-top: 10px;
-            font-weight: 700;
-            color: var(--green-dark);
-            font-size: 15px;
-        }
-
-        .revenue-note {
-            margin-top: 12px;
-            font-size: 12px;
-            color: var(--text-muted);
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        /* ============ SYSTEM PREVIEW ============ */
-        .system {
-            padding: 48px 24px;
-            background: var(--white);
-        }
-
-        .system-screenshots {
-            margin-top: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
+        /* System screenshots */
         .system-shot {
             border-radius: var(--radius-sm);
             overflow: hidden;
             box-shadow: var(--shadow-md);
             border: 1px solid var(--gray-border);
+            margin: 12px 0;
         }
 
-        .system-shot img {
-            width: 100%;
-            display: block;
-        }
+        .system-shot img { width: 100%; display: block; }
 
         .system-shot-label {
-            background: var(--gray-bg);
-            padding: 12px 16px;
+            background: var(--gray-100);
+            padding: 10px 14px;
             font-size: 13px;
             font-weight: 600;
             color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .system-shot-label span {
-            font-size: 12px;
             font-weight: 400;
             color: var(--text-muted);
-        }
-
-        /* ============ ZERO COST ============ */
-        .zero-cost {
-            padding: 48px 24px;
-            background: var(--green-bg);
-        }
-
-        .zero-list {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .zero-item {
-            background: var(--white);
-            border-radius: var(--radius-xs);
-            padding: 18px 16px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .zero-check {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: var(--green);
-            color: var(--dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            font-weight: 800;
-            flex-shrink: 0;
-        }
-
-        .zero-text {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-primary);
-            line-height: 1.5;
-            word-break: keep-all;
-        }
-
-        .zero-text span {
-            display: block;
             font-size: 12px;
-            font-weight: 400;
-            color: var(--text-muted);
-            margin-top: 2px;
         }
 
-        /* ============ CURRENT STATUS ============ */
-        .status {
-            padding: 48px 24px;
-            background: var(--white);
-        }
-
-        .status-grid {
-            margin-top: 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .status-card {
-            background: var(--gray-bg);
-            border-radius: var(--radius-sm);
-            padding: 20px 16px;
-            text-align: center;
-        }
-
-        .status-num {
-            font-size: 26px;
-            font-weight: 800;
-            color: var(--dark);
-            letter-spacing: -1px;
-        }
-
-        .status-num em {
-            font-style: normal;
-            color: var(--green-dark);
-        }
-
-        .status-label {
-            font-size: 12px;
-            color: var(--text-muted);
-            font-weight: 500;
-            margin-top: 4px;
-        }
-
-        /* ============ FAQ ============ */
-        .faq {
-            padding: 48px 24px;
-            background: var(--gray-bg);
-        }
-
-        .faq-list {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
+        /* FAQ */
         .faq-item {
             background: var(--white);
+            border: 1px solid var(--gray-border);
             border-radius: var(--radius-sm);
-            padding: 20px;
-            box-shadow: var(--shadow-sm);
+            padding: 18px 16px;
+            margin: 10px 0;
         }
 
         .faq-q {
             font-size: 14px;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 10px;
             display: flex;
             gap: 8px;
+            margin-bottom: 8px;
             line-height: 1.5;
         }
 
@@ -768,269 +716,391 @@
             word-break: keep-all;
         }
 
-        /* ============ CTA ============ */
-        .cta {
-            padding: 48px 24px 64px;
-            background: var(--dark);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: -40%;
-            right: -30%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(1,223,130,0.12) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .cta h2 {
-            font-size: 22px;
-            font-weight: 800;
-            color: var(--white);
-            margin-bottom: 12px;
-            line-height: 1.45;
-            position: relative;
-            z-index: 1;
-            letter-spacing: -0.5px;
-            word-break: keep-all;
-        }
-
-        .cta h2 em {
-            font-style: normal;
-            color: var(--green);
-        }
-
-        .cta p {
-            font-size: 14px;
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 28px;
-            position: relative;
-            z-index: 1;
-            line-height: 1.6;
-            word-break: keep-all;
-        }
-
-        .cta-btn {
-            display: inline-block;
-            background: var(--green);
-            color: var(--dark);
-            font-size: 16px;
-            font-weight: 800;
-            padding: 16px 48px;
-            border-radius: 50px;
-            text-decoration: none;
-            box-shadow: 0 4px 20px rgba(1,223,130,0.35);
-            transition: transform 0.2s, box-shadow 0.2s;
-            position: relative;
-            z-index: 1;
-            letter-spacing: -0.3px;
-        }
-
-        .cta-btn:active {
-            transform: scale(0.97);
-        }
-
-        .cta-contact {
-            margin-top: 20px;
-            font-size: 13px;
-            color: rgba(255,255,255,0.4);
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ============ FLOATING CTA ============ */
-        .floating-cta {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 480px;
-            padding: 12px 24px calc(12px + env(safe-area-inset-bottom, 0px));
-            background: rgba(15,25,35,0.95);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-top: 1px solid rgba(255,255,255,0.08);
-            z-index: 100;
-            display: none;
-        }
-
-        .floating-cta.visible { display: block; }
-
-        .floating-cta-btn {
-            display: block;
-            background: var(--green);
-            color: var(--dark);
-            font-size: 16px;
-            font-weight: 800;
-            padding: 16px;
-            border-radius: 14px;
-            text-decoration: none;
-            text-align: center;
-            box-shadow: 0 4px 16px rgba(1,223,130,0.3);
-            letter-spacing: -0.3px;
-        }
-
-        .floating-cta-btn:active {
-            background: var(--green-dark);
-        }
-
-        /* ============ FOOTER ============ */
+        /* Footer */
         .footer {
-            padding: 24px;
-            background: #0A1018;
+            background: var(--dark);
+            padding: 32px 24px;
             text-align: center;
         }
 
         .footer p {
-            font-size: 11px;
-            color: #555;
+            font-size: 12px;
+            color: rgba(255,255,255,0.3);
             line-height: 1.7;
         }
 
-        /* ============ RESPONSIVE ============ */
-        @media (min-width: 481px) {
-            body { background: #E8EAED; }
-            .container { box-shadow: 0 0 48px rgba(0,0,0,0.12); }
+        .footer a {
+            color: var(--green);
+            text-decoration: none;
         }
+
+        /* Responsive */
+        @media (min-width: 721px) {
+            body { background: #E8EAED; }
+            .container { box-shadow: 0 0 48px rgba(0,0,0,0.1); }
+        }
+
+        @media (max-width: 400px) {
+            .card-grid { grid-template-columns: 1fr; }
+        }
+
+        strong { color: var(--text-primary); }
     </style>
 </head>
 <body>
     <div class="container">
 
+        <!-- TOP NAV -->
+        <nav class="top-nav">
+            <div class="top-nav-brand">
+                <img src="images/캠핏로고.png" alt="캠핏">
+                <span>CAMFIT</span>
+            </div>
+            <button class="top-nav-toc-btn" onclick="toggleToc()">목차</button>
+        </nav>
+
+        <!-- TOC OVERLAY -->
+        <div class="toc-overlay" id="tocOverlay" onclick="closeToc(event)">
+            <div class="toc-panel">
+                <h3>목차</h3>
+                <ul class="toc-list">
+                    <li><a href="#ch1" onclick="closeTocDirect()"><span class="toc-num">1</span>캠핏 체험이란?</a></li>
+                    <li><a href="#ch2" onclick="closeTocDirect()"><span class="toc-num">2</span>왜 캠핏 체험을 해야 하는가?</a></li>
+                    <li><a href="#ch3" onclick="closeTocDirect()"><span class="toc-num">3</span>캠지기가 얻는 것들</a></li>
+                    <li><a href="#ch4" onclick="closeTocDirect()"><span class="toc-num">4</span>체험 프로세스</a></li>
+                    <li><a href="#ch5" onclick="closeTocDirect()"><span class="toc-num">5</span>체험 종류 및 라인업</a></li>
+                    <li><a href="#ch6" onclick="closeTocDirect()"><span class="toc-num">6</span>수익 구조 및 정산</a></li>
+                    <li><a href="#ch7" onclick="closeTocDirect()"><span class="toc-num">7</span>최소운영인원(MOQ) 이해하기</a></li>
+                    <li><a href="#ch8" onclick="closeTocDirect()"><span class="toc-num">8</span>체험 장소 세팅 가이드</a></li>
+                    <li><a href="#ch9" onclick="closeTocDirect()"><span class="toc-num">9</span>캠지기 현장 운영 가이드</a></li>
+                    <li><a href="#ch10" onclick="closeTocDirect()"><span class="toc-num">10</span>체험 편성 전략</a></li>
+                    <li><a href="#ch11" onclick="closeTocDirect()"><span class="toc-num">11</span>안전 관리</a></li>
+                    <li><a href="#ch12" onclick="closeTocDirect()"><span class="toc-num">12</span>자주 묻는 질문 (FAQ)</a></li>
+                    <li><a href="#ch13" onclick="closeTocDirect()"><span class="toc-num">13</span>어드민 시스템 사용법</a></li>
+                    <li><a href="#ch14" onclick="closeTocDirect()"><span class="toc-num">14</span>성공 사례</a></li>
+                    <li><a href="#ch15" onclick="closeTocDirect()"><span class="toc-num">15</span>부록</a></li>
+                </ul>
+            </div>
+        </div>
+
         <!-- HERO -->
-        <section class="hero">
-            <div class="hero-brand">
-                <img src="images/캠핏로고.png" alt="캠핏" class="hero-logo">
-                <span class="hero-brand-name">CAMFIT</span>
+        <header class="hero">
+            <div class="hero-version">v0.1 | 2026.03</div>
+            <h1>캠핏 <em>체험</em> 가이드<br>캠지기 마스터북</h1>
+            <p class="hero-sub">캠핑장에서 체험 프로그램을 도입하고 운영하기 위한<br>모든 것을 담았습니다.</p>
+            <div class="hero-meta">
+                <span>주식회사 넥스트에디션</span>
+                <span>캠핏 체험팀</span>
             </div>
-            <div class="hero-new-badge">
-                <span class="pulse"></span>
-                체험 자동화 시스템 오픈
+        </header>
+
+        <!-- ============================================================ -->
+        <!-- 1장. 캠핏 체험이란? -->
+        <!-- ============================================================ -->
+        <section class="chapter" id="ch1">
+            <span class="chapter-num">1장</span>
+            <h2>캠핏 체험이란?</h2>
+
+            <h3>정의</h3>
+            <p><strong>캠핏 체험</strong>은 검증된 체험 공급사가 캠핑장에 직접 방문하여 캠퍼 가족을 대상으로 진행하는 현장 체험 프로그램입니다. 이동식 동물원, 과학캠프, 숲 생태 체험, 공예 워크숍 등 30가지 이상의 프로그램이 매주 전국 캠핑장에서 운영되고 있습니다.</p>
+
+            <div class="info-box">
+                <strong>핵심 한마디:</strong> 캠지기님은 체험을 선택만 하세요. 기획, 공급사 섭외, 고객 모집, 예약 관리, 정산까지 캠핏이 전부 처리합니다.
             </div>
-            <h1>우리 캠핑장에서<br><em>체험 프로그램</em>,<br>시작해보세요!</h1>
-            <p>캠핑장 전용 체험 자동화 시스템이 완성되었습니다.<br>클릭 몇 번이면 체험이 열립니다.</p>
+
+            <h3>일반 체험 vs 캠핏 체험</h3>
+            <table class="role-table">
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>일반 (캠지기 직접)</th>
+                        <th>캠핏 체험</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>체험 기획</td>
+                        <td>캠지기가 직접</td>
+                        <td class="check">캠핏이 기획</td>
+                    </tr>
+                    <tr>
+                        <td>공급사 섭외</td>
+                        <td>캠지기가 직접</td>
+                        <td class="check">캠핏이 자동 매칭</td>
+                    </tr>
+                    <tr>
+                        <td>고객 모집</td>
+                        <td>캠지기가 직접</td>
+                        <td class="check">캠핏 앱+CRM 발송</td>
+                    </tr>
+                    <tr>
+                        <td>예약 관리</td>
+                        <td>전화/문자</td>
+                        <td class="check">어드민 시스템</td>
+                    </tr>
+                    <tr>
+                        <td>정산</td>
+                        <td>직접 정산</td>
+                        <td class="check">자동 정산</td>
+                    </tr>
+                    <tr>
+                        <td>비용 부담</td>
+                        <td>전액 부담</td>
+                        <td class="check">0원</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>역할 분담</h3>
+            <table class="role-table">
+                <thead>
+                    <tr>
+                        <th>항목</th>
+                        <th>캠핏</th>
+                        <th>캠지기</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>체험 프로그램 라인업 관리</td>
+                        <td class="check">&#x2713;</td>
+                        <td class="x-mark">-</td>
+                    </tr>
+                    <tr>
+                        <td>공급사 검증 및 매칭</td>
+                        <td class="check">&#x2713;</td>
+                        <td class="x-mark">-</td>
+                    </tr>
+                    <tr>
+                        <td>캠퍼 모집 (앱/CRM)</td>
+                        <td class="check">&#x2713;</td>
+                        <td class="x-mark">-</td>
+                    </tr>
+                    <tr>
+                        <td>예약·정산 시스템 운영</td>
+                        <td class="check">&#x2713;</td>
+                        <td class="x-mark">-</td>
+                    </tr>
+                    <tr>
+                        <td>원하는 체험 선택 (어드민)</td>
+                        <td class="x-mark">-</td>
+                        <td class="check">&#x2713;</td>
+                    </tr>
+                    <tr>
+                        <td>체험 장소 제공·세팅</td>
+                        <td class="x-mark">-</td>
+                        <td class="check">&#x2713;</td>
+                    </tr>
+                    <tr>
+                        <td>체험 당일 공급사 맞이</td>
+                        <td class="x-mark">-</td>
+                        <td class="check">&#x2713;</td>
+                    </tr>
+                    <tr>
+                        <td>시설 지원 (전기/수도)</td>
+                        <td class="x-mark">-</td>
+                        <td class="check">&#x2713;</td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
 
-        <!-- STATS BAR -->
-        <section class="stats-bar">
-            <div class="stat-item">
-                <div class="stat-num">30+</div>
-                <div class="stat-label">체험 프로그램</div>
+        <!-- ============================================================ -->
+        <!-- 2장. 왜 캠핏 체험을 해야 하는가? -->
+        <!-- ============================================================ -->
+        <section class="chapter" id="ch2">
+            <span class="chapter-num">2장</span>
+            <h2>왜 캠핏 체험을<br>해야 하는가?</h2>
+
+            <h3>캠핑 시장 트렌드</h3>
+            <p>캠핑 시장이 성숙기에 접어들면서 캠퍼들의 기대 수준이 높아지고 있습니다. 특히 <strong>가족 캠퍼</strong>가 주류를 이루는 현재, "캠핑장에서 아이들이 뭘 할 수 있는가"가 캠핑장 선택의 핵심 기준이 되고 있습니다.</p>
+            <ul>
+                <li>캠핏 이용자의 70% 이상이 자녀를 동반한 가족 캠퍼</li>
+                <li>"아이가 좋아할 체험"이 캠핑장 선택의 1순위 요소로 부상</li>
+                <li>단순 숙박을 넘어 "경험"을 제공하는 캠핑장이 선택받는 시대</li>
+            </ul>
+
+            <h3>숙박만으로는 한계인 이유</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">&#x1F3D5;</div>
+                    <h5>차별화 부재</h5>
+                    <p>주변 캠핑장과 시설이 비슷하면 가격 경쟁에 빠집니다</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">&#x1F504;</div>
+                    <h5>재방문 동기 부족</h5>
+                    <p>"한 번 갔으니 다른 곳 가보자"가 되기 쉽습니다</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">&#x1F4C9;</div>
+                    <h5>비수기 공실</h5>
+                    <p>비수기에 숙박만으로 객실을 채우기 어렵습니다</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">&#x1F4B8;</div>
+                    <h5>객단가 정체</h5>
+                    <p>숙박비만으로 매출 성장에 한계가 있습니다</p>
+                </div>
             </div>
-            <div class="stat-item">
-                <div class="stat-num">53개</div>
-                <div class="stat-label">도입 캠핑장</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-num">477건</div>
-                <div class="stat-label">3개월 예약</div>
+
+            <h3>체험이 숙박 예약을 끌어오는 구조</h3>
+            <p>체험은 캠퍼에게 <strong>"이번 주 토요일, 이 캠핑장에 가야 할 이유"</strong>를 만들어줍니다. "이동식 동물원이 이번 주 토요일에 온다" → 숙박 예약으로 이어지는 구조입니다.</p>
+
+            <div class="info-box">
+                <strong>에어비앤비 데이터 참고:</strong> 체험(Experience)을 먼저 예약한 유저의 숙소 전환율은 일반 유저 대비 <strong>3배</strong> 높습니다. 체험이 숙박의 트리거가 되는 것입니다.
             </div>
         </section>
 
-        <!-- WHY EXPERIENCE -->
-        <section class="why">
-            <span class="section-tag">왜 체험인가요?</span>
-            <h2 class="section-title">체험이 있는 캠핑장은<br>다릅니다</h2>
-            <p class="section-desc">체험은 단순 부가 서비스가 아닙니다. 캠퍼에게 '이 날, 이 캠핑장에 가야 할 이유'를 만들어줍니다.</p>
-            <div class="why-cards">
-                <div class="why-card">
-                    <div class="why-card-icon">&#x1F4C8;</div>
-                    <div class="why-card-text">
-                        <h3>예약 전환율 상승</h3>
-                        <p>체험이 있는 캠핑장은 "이번 주 여기 가자!"라는 결정적 이유가 됩니다. 예약 전환율이 올라갑니다.</p>
-                    </div>
-                </div>
-                <div class="why-card">
-                    <div class="why-card-icon">&#x1F504;</div>
-                    <div class="why-card-text">
-                        <h3>재방문율 향상</h3>
-                        <p>아이들이 "거기 또 가자!"고 합니다. 체험이 만든 추억은 강력한 재방문 동기가 됩니다.</p>
-                    </div>
-                </div>
-                <div class="why-card">
-                    <div class="why-card-icon">&#x2B50;</div>
-                    <div class="why-card-text">
-                        <h3>캠핑장 차별화</h3>
-                        <p>주변에 비슷한 캠핑장이 많아도, 체험이 있으면 선택받습니다. 리뷰와 사진이 자연스럽게 쌓입니다.</p>
-                    </div>
-                </div>
-                <div class="why-card">
-                    <div class="why-card-icon">&#x1F4B0;</div>
-                    <div class="why-card-text">
-                        <h3>추가 수익 발생</h3>
-                        <p>체험 예약이 최소 운영 인원을 초과하면, 초과 수익의 일정 비율을 캠핑장이 가져갑니다.</p>
-                    </div>
-                </div>
+        <!-- ============================================================ -->
+        <!-- 3장. 캠지기가 얻는 것들 -->
+        <!-- ============================================================ -->
+        <section class="chapter" id="ch3">
+            <span class="chapter-num">3장</span>
+            <h2>캠지기가 얻는 것들</h2>
+
+            <div class="card-full">
+                <h5>&#x1F4B0; 추가 수익</h5>
+                <p>체험 예약이 최소 운영 인원을 초과하면, 초과 수익의 <strong>20~30%</strong>를 캠핑장이 가져갑니다. 적극적으로 운영할수록 등급이 올라가고, 분배율도 높아집니다.</p>
             </div>
-            <div class="why-highlight">
-                <p>에어비앤비 데이터에 따르면,<br><strong>체험을 먼저 예약한 유저의 숙소 전환율은<br>일반 대비 3배</strong>입니다.</p>
+
+            <div class="card-full">
+                <h5>&#x1F4C8; 숙박 예약 증가</h5>
+                <p>체험이 편성된 주말의 예약률은 체험이 없는 주말보다 높습니다. 체험이 숙박을 끌어오는 트리거 역할을 합니다. 캠핏 앱에서 "이 캠핑장에서 이번 주 체험이 있어요"라는 노출이 자연스럽게 숙박 예약으로 연결됩니다.</p>
+            </div>
+
+            <div class="card-full">
+                <h5>&#x2B50; 고객 만족도 향상</h5>
+                <p>체험 후 남기는 사진과 후기가 캠핑장 상세페이지에 쌓입니다. "아이가 너무 좋아했어요"라는 리뷰는 다른 가족 캠퍼의 예약을 유도하는 강력한 자산입니다.</p>
+            </div>
+
+            <div class="card-full">
+                <h5>&#x1F504; 재방문율 증가</h5>
+                <p>아이들의 "거기 또 가자!"는 강력한 재방문 동기입니다. 매주 다른 체험이 열리기 때문에, "이번에는 과학캠프, 다음에는 동물원"으로 반복 방문이 유도됩니다.</p>
+            </div>
+
+            <div class="card-full">
+                <h5>&#x1F3AF; 캠핑장 브랜딩</h5>
+                <p>"체험이 있는 캠핑장"으로 포지셔닝됩니다. 캠핏 앱 내 체험 기획전, 배너, 검색 필터에 노출되어 자연스러운 브랜딩 효과를 얻습니다.</p>
+            </div>
+
+            <div class="card-full">
+                <h5>&#x1F64C; 운영 부담 제로</h5>
+                <p>기획·공급사 섭외·고객 모집·예약 관리·정산 모두 캠핏과 공급사가 담당합니다. 캠지기님은 체험을 선택하고, 당일 장소만 제공해주시면 됩니다.</p>
             </div>
         </section>
 
-        <!-- HOW THE SYSTEM WORKS -->
-        <section class="how-system">
-            <span class="section-tag">&#x26A1; 자동화 시스템</span>
-            <h2 class="section-title">클릭 몇 번이면<br>체험이 열립니다</h2>
-            <p class="section-desc">캠핑장 사장님은 원하는 체험을 고르기만 하세요. 공급사 매칭, 고객 모집, 예약, 정산까지 캠핏이 전부 처리합니다.</p>
-            <div class="system-flow">
-                <div class="flow-item">
-                    <div class="flow-num-wrap">
-                        <div class="flow-num">1</div>
-                        <div class="flow-line"></div>
-                    </div>
-                    <div class="flow-content">
-                        <h4>체험 선택</h4>
-                        <p>어드민에서 30개 이상의 체험 중 원하는 프로그램을 고릅니다.</p>
-                    </div>
-                </div>
-                <div class="flow-item">
-                    <div class="flow-num-wrap">
-                        <div class="flow-num">2</div>
-                        <div class="flow-line"></div>
-                    </div>
-                    <div class="flow-content">
-                        <h4>공급사 자동 매칭</h4>
-                        <p>캠핏이 해당 지역의 검증된 체험 공급사를 자동으로 매칭합니다.</p>
-                        <span class="flow-auto-tag">AUTO</span>
+        <!-- ============================================================ -->
+        <!-- 4장. 체험 프로세스 -->
+        <!-- ============================================================ -->
+        <section class="chapter" id="ch4">
+            <span class="chapter-num">4장</span>
+            <h2>체험 프로세스<br>(전체 흐름)</h2>
+
+            <div class="step-flow">
+                <div class="step-item">
+                    <div class="step-num-wrap"><div class="step-num">1</div><div class="step-line"></div></div>
+                    <div class="step-content">
+                        <h5>캠지기가 체험 제휴 신청</h5>
+                        <p>어드민 시스템에서 원하는 체험 프로그램을 골라 제휴를 신청합니다.</p>
+                        <span class="step-badge badge-camp">캠지기 액션</span>
                     </div>
                 </div>
-                <div class="flow-item">
-                    <div class="flow-num-wrap">
-                        <div class="flow-num">3</div>
-                        <div class="flow-line"></div>
-                    </div>
-                    <div class="flow-content">
-                        <h4>캠퍼 모집 & 예약 오픈</h4>
-                        <p>캠핏 앱에 체험이 노출되고, 100만 이용자에게 CRM 발송. 참여자를 캠핏이 모집합니다.</p>
-                        <span class="flow-auto-tag">AUTO</span>
+                <div class="step-item">
+                    <div class="step-num-wrap"><div class="step-num">2</div><div class="step-line"></div></div>
+                    <div class="step-content">
+                        <h5>캠핏이 공급사 자동 매칭</h5>
+                        <p>캠핑장 위치와 체험 종류에 맞는 검증된 공급사를 매칭합니다.</p>
+                        <span class="step-badge badge-auto">AUTO</span>
                     </div>
                 </div>
-                <div class="flow-item">
-                    <div class="flow-num-wrap">
-                        <div class="flow-num">4</div>
+                <div class="step-item">
+                    <div class="step-num-wrap"><div class="step-num">3</div><div class="step-line"></div></div>
+                    <div class="step-content">
+                        <h5>공급사 수락 → 예약 오픈</h5>
+                        <p>공급사가 일정을 수락하면, 캠핏 앱에서 바로 캠퍼 대상 예약이 오픈됩니다.</p>
+                        <span class="step-badge badge-auto">AUTO</span>
                     </div>
-                    <div class="flow-content">
-                        <h4>체험 진행 & 자동 정산</h4>
-                        <p>체험이 진행되고, 수익은 자동으로 정산됩니다. 사장님은 지켜보기만 하세요.</p>
-                        <span class="flow-auto-tag">AUTO</span>
+                </div>
+                <div class="step-item">
+                    <div class="step-num-wrap"><div class="step-num">4</div><div class="step-line"></div></div>
+                    <div class="step-content">
+                        <h5>캠핏이 캠퍼에게 CRM 안내</h5>
+                        <p>숙박 예약자를 대상으로 알림톡·푸시 알림·앱 노출을 통해 체험 참여를 안내합니다. 예약 직후, D-3, D-1, 당일 체크인 시점에 맞춰 다단계로 안내합니다.</p>
+                        <span class="step-badge badge-auto">AUTO</span>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num-wrap"><div class="step-num">5</div><div class="step-line"></div></div>
+                    <div class="step-content">
+                        <h5>최소운영인원(MOQ) 충족 확인</h5>
+                        <p>체험 진행 7일 전(D-7)에 최소 인원 충족 여부를 확인합니다. 미달 시 자동 취소되며, 캠지기님에게 비용은 전혀 발생하지 않습니다.</p>
+                        <span class="step-badge badge-auto">AUTO</span>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num-wrap"><div class="step-num">6</div><div class="step-line"></div></div>
+                    <div class="step-content">
+                        <h5>체험 당일, 공급사 방문 진행</h5>
+                        <p>공급사가 캠핑장에 직접 방문하여 체험을 진행합니다. 캠지기님은 장소 안내와 시설(전기/수도)을 제공해주시면 됩니다.</p>
+                        <span class="step-badge badge-camp">캠지기 액션</span>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num-wrap"><div class="step-num">7</div></div>
+                    <div class="step-content">
+                        <h5>체험 완료 → 자동 정산</h5>
+                        <p>체험이 종료되면, 수익 분배가 시스템에서 자동으로 처리됩니다. 어드민에서 정산 내역을 확인할 수 있습니다.</p>
+                        <span class="step-badge badge-auto">AUTO</span>
                     </div>
                 </div>
             </div>
+
+            <h3>캠지기 액션 체크리스트</h3>
+            <ul class="checklist">
+                <li><span class="ck">&#x2713;</span>어드민에서 원하는 체험 선택 및 제휴 신청</li>
+                <li><span class="ck">&#x2713;</span>체험 3일 전: 체험 장소 확보 및 정리</li>
+                <li><span class="ck">&#x2713;</span>체험 3일 전: 공급사 차량 진입 동선 확인</li>
+                <li><span class="ck">&#x2713;</span>체험 당일: 공급사 맞이 및 장소 안내</li>
+                <li><span class="ck">&#x2713;</span>체험 당일: 전기/수도 등 시설 제공</li>
+                <li><span class="ck">&#x2713;</span>체험 당일: 비예약 캠퍼 현장 참여 안내 (QR 결제)</li>
+                <li><span class="ck">&#x2713;</span>체험 후: 장소 원상복구 확인</li>
+                <li><span class="ck">&#x2713;</span>이슈 발생 시: 캠핏 운영팀 보고</li>
+            </ul>
         </section>
 
-        <!-- EXPERIENCE GALLERY -->
-        <section class="gallery">
-            <div class="gallery-header">
-                <span class="section-tag">체험 프로그램</span>
-                <h2 class="section-title">매주 전국 캠핑장에서<br>진행되고 있습니다</h2>
-                <p class="gallery-count">현재 30개 이상의 체험 운영 중</p>
-            </div>
+        <!-- ============================================================ -->
+        <!-- 5장. 체험 종류 및 라인업 -->
+        <!-- ============================================================ -->
+        <section class="chapter" id="ch5">
+            <span class="chapter-num">5장</span>
+            <h2>체험 종류 및 라인업</h2>
+
+            <p>현재 <strong>30개 이상</strong>의 체험 프로그램이 운영 중이며, 지속적으로 확대되고 있습니다.</p>
+
+            <h3>카테고리별 체험 목록</h3>
+
+            <h4>&#x1F43E; 동물</h4>
+            <p>이동식 동물원, 소동물 체험, 파충류 체험, 곤충 체험</p>
+
+            <h4>&#x1F333; 자연 / 숲</h4>
+            <p>숲 생태 체험, 숲 놀이 프로그램, 별자리 관측, 자연물 공예</p>
+
+            <h4>&#x1F52C; 과학 / 교육</h4>
+            <p>과학캠프, 코딩 교실, 천체 관측, 생태 탐구</p>
+
+            <h4>&#x1F3A8; 공예 / 만들기</h4>
+            <p>석고방향제, 우드버닝, 목공예, 가죽공예, 캔들 만들기, 비누 만들기</p>
+
+            <h4>&#x1F373; 요리</h4>
+            <p>셰프 BBQ 클래스, 훈제 요리, 캠핑 디저트, 바베큐 체험</p>
+
+            <h4>&#x1F3C3; 스포츠 / 액티비티</h4>
+            <p>파크골프, 워터 스포츠, 서바이벌 게임, 팀빌딩 프로그램</p>
+
+            <h4>&#x1F3AD; 문화 / 공연</h4>
+            <p>영어캠프, 마술 공연, 버스킹, 음악 체험</p>
+
             <div class="gallery-scroll">
                 <div class="gallery-item">
                     <img src="images/이동 동물원 체험.jpg" alt="이동 동물원 체험">
@@ -1053,251 +1123,586 @@
                     <div class="gallery-item-label">석고방향제 만들기</div>
                 </div>
             </div>
-            <p class="gallery-hint">&#x2190; 좌우로 스크롤 &#x2192;</p>
-        </section>
 
-        <!-- REVENUE -->
-        <section class="revenue">
-            <span class="section-tag">&#x1F4B0; 수익 구조</span>
-            <h2 class="section-title">체험할수록<br>캠핑장 수익이 올라갑니다</h2>
-            <p class="section-desc">최소 운영 인원 초과 시 발생하는 수익을 캠핑장과 나눕니다. 등급이 올라갈수록 더 많이 가져가세요.</p>
-            <div class="revenue-diagram">
-                <div class="revenue-concept">
-                    <h3>캠핑장 수익 공식</h3>
-                    <div class="revenue-formula">
-                        <div class="rev-box">초과 수익</div>
-                        <div class="rev-op">&times;</div>
-                        <div class="rev-box highlight">등급별 분배율</div>
-                        <div class="rev-op">=</div>
-                        <div class="rev-box">캠핑장 수익</div>
-                    </div>
-                </div>
-                <div class="grade-table">
-                    <div class="grade-table-title">등급별 수익 분배율</div>
-                    <div class="grade-row">
-                        <div class="grade-badge grade-s">S</div>
-                        <div class="grade-info">
-                            <div class="name">파트너 등급</div>
-                            <div class="desc">적극 운영 + 높은 성공률</div>
-                        </div>
-                        <div class="grade-rate">30%</div>
-                    </div>
-                    <div class="grade-row">
-                        <div class="grade-badge grade-a">A</div>
-                        <div class="grade-info">
-                            <div class="name">우수 등급</div>
-                            <div class="desc">안정적 체험 운영</div>
-                        </div>
-                        <div class="grade-rate">25%</div>
-                    </div>
-                    <div class="grade-row">
-                        <div class="grade-badge grade-b">B</div>
-                        <div class="grade-info">
-                            <div class="name">기본 등급</div>
-                            <div class="desc">신규 캠핑장 기본 (첫 3개월)</div>
-                        </div>
-                        <div class="grade-rate">20%</div>
-                    </div>
-                </div>
-            </div>
-            <div class="revenue-example">
-                <h4>&#x1F4CA; 월 수익 시뮬레이션 (S등급 기준)</h4>
-                <div class="example-row">
-                    <span>월 체험 진행</span>
-                    <span>8회</span>
-                </div>
-                <div class="example-row">
-                    <span>회당 초과 수익 (평균)</span>
-                    <span>200,000원</span>
-                </div>
-                <div class="example-row">
-                    <span>S등급 분배율</span>
-                    <span>30%</span>
-                </div>
-                <div class="example-row total">
-                    <span>캠핑장 월 수익</span>
-                    <span>480,000원</span>
-                </div>
-            </div>
-            <p class="revenue-note">* 신규 캠핑장은 첫 3개월간 B등급(20%)으로 시작합니다.<br>* 운영 실적에 따라 분기마다 등급이 조정됩니다.</p>
-        </section>
+            <h3>인기 체험 TOP 5</h3>
+            <ol>
+                <li><strong>이동식 동물원</strong> — 전환율 1위. 아이들이 가장 좋아하는 킬러 체험</li>
+                <li><strong>과학캠프</strong> — 교육적 가치가 높아 학부모 만족도 최상</li>
+                <li><strong>숲 생태 체험</strong> — 캠핑장 환경과 최적의 시너지</li>
+                <li><strong>석고방향제 만들기</strong> — 만들기 체험 중 가성비 최고</li>
+                <li><strong>영어캠프</strong> — 놀면서 배우는 구조로 재참여 의향 높음</li>
+            </ol>
 
-        <!-- SYSTEM PREVIEW -->
-        <section class="system">
-            <span class="section-tag">&#x1F4F1; 어드민 시스템</span>
-            <h2 class="section-title">캠핑장 전용 관리 화면으로<br>모든 것을 한눈에</h2>
-            <p class="section-desc">체험 선택부터 예약 현황, 정산까지. 사장님 전용 어드민에서 편리하게 관리하세요.</p>
-            <div class="system-screenshots">
-                <div class="system-shot">
-                    <img src="images/체험 홈.png" alt="체험 홈 대시보드">
-                    <div class="system-shot-label">홈 대시보드 <span>매칭 요청, 오늘의 현장을 한눈에</span></div>
-                </div>
-                <div class="system-shot">
-                    <img src="images/체험 관리.png" alt="체험 관리">
-                    <div class="system-shot-label">체험 관리 <span>원하는 체험을 골라 요청하세요</span></div>
-                </div>
-                <div class="system-shot">
-                    <img src="images/최소 운영 인원 관리.png" alt="최소 운영 인원 관리">
-                    <div class="system-shot-label">MOQ 캘린더 <span>최소 인원 충족 여부를 실시간 확인</span></div>
-                </div>
-                <div class="system-shot">
-                    <img src="images/예약 관리.png" alt="예약 관리">
-                    <div class="system-shot-label">예약 관리 <span>참여자 정보와 예약 상태 실시간 확인</span></div>
-                </div>
-                <div class="system-shot">
-                    <img src="images/정산 관리.png" alt="정산 관리">
-                    <div class="system-shot-label">정산 관리 <span>매출 추이와 정산 내역을 투명하게</span></div>
-                </div>
+            <h3>시즌별 추천 체험</h3>
+            <table class="role-table">
+                <thead>
+                    <tr><th>시즌</th><th>추천 체험</th><th>이유</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>봄</strong> (3~5월)</td><td>숲 생태, 자연물 공예, 곤충 체험</td><td>새싹·꽃 등 자연 소재 풍부</td></tr>
+                    <tr><td><strong>여름</strong> (6~8월)</td><td>워터 스포츠, 별자리, 이동 동물원</td><td>야외 활동 최적기, 피서 수요</td></tr>
+                    <tr><td><strong>가을</strong> (9~11월)</td><td>공예, 요리, 과학캠프</td><td>선선한 날씨에 집중형 체험 인기</td></tr>
+                    <tr><td><strong>겨울</strong> (12~2월)</td><td>실내 공예, 마술 공연, 코딩</td><td>실내/차량형 체험 편성 필요</td></tr>
+                </tbody>
+            </table>
+
+            <div class="tip-box">
+                <strong>TIP:</strong> 주말(토요일)이 기본이며, 어린이날·크리스마스 등 특별한 날에는 주중 편성도 가능합니다. 향후 토요일 하루 2회 이상 운영으로 확대 예정입니다.
             </div>
         </section>
 
-        <!-- ZERO COST -->
-        <section class="zero-cost">
-            <span class="section-tag">&#x2705; 캠핑장 부담</span>
-            <h2 class="section-title">사장님이 하실 일은<br>딱 하나입니다</h2>
-            <p class="section-desc">체험 프로그램을 고르세요. 나머지는 전부 캠핏이 합니다.</p>
-            <div class="zero-list">
-                <div class="zero-item">
-                    <div class="zero-check">&#x2713;</div>
-                    <div class="zero-text">
-                        도입 비용 0원
-                        <span>시스템 사용료, 세팅비 모두 무료</span>
-                    </div>
+        <!-- ============================================================ -->
+        <!-- 6장. 수익 구조 및 정산 -->
+        <!-- ============================================================ -->
+        <section class="chapter" id="ch6">
+            <span class="chapter-num">6장</span>
+            <h2>수익 구조 및 정산</h2>
+
+            <h3>수익 분배 원리</h3>
+            <p>캠핏 체험의 수익 분배는 <strong>최소운영인원(MOQ) 초과분</strong>에서 발생합니다. 체험에 참여한 인원이 MOQ를 넘어서면, 그 초과분에서 발생한 수익의 일정 비율을 캠핑장이 가져갑니다.</p>
+
+            <div class="info-box">
+                <strong>예시:</strong> MOQ가 10명인 체험에 15명이 참여하면 → 초과 5명분의 수익에서 캠핑장 분배율(등급별)만큼 캠지기님의 수익이 됩니다.
+            </div>
+
+            <h3>등급제 (5단계)</h3>
+            <p>캠핑장의 체험 운영 실적에 따라 등급이 부여되며, 등급에 따라 수익 분배율이 달라집니다.</p>
+
+            <div class="grade-card grade-s">
+                <div class="grade-letter">S</div>
+                <div class="grade-info">
+                    <div class="name">파트너 등급</div>
+                    <div class="desc">적극 운영 + 높은 성공률 + 우수한 현장 협조 (85점 이상)</div>
                 </div>
-                <div class="zero-item">
-                    <div class="zero-check">&#x2713;</div>
-                    <div class="zero-text">
-                        고객 모집은 캠핏이
-                        <span>앱 노출 + CRM 발송으로 참여자 확보</span>
-                    </div>
+                <div class="grade-rate">30%</div>
+            </div>
+
+            <div class="grade-card grade-a">
+                <div class="grade-letter">A</div>
+                <div class="grade-info">
+                    <div class="name">우수 등급</div>
+                    <div class="desc">안정적인 체험 운영 (70~84점)</div>
                 </div>
-                <div class="zero-item">
-                    <div class="zero-check">&#x2713;</div>
-                    <div class="zero-text">
-                        공급사 섭외도 캠핏이
-                        <span>검증된 체험 공급사를 자동 매칭</span>
-                    </div>
+                <div class="grade-rate">25%</div>
+            </div>
+
+            <div class="grade-card grade-b">
+                <div class="grade-letter">B</div>
+                <div class="grade-info">
+                    <div class="name">기본 등급</div>
+                    <div class="desc">신규 캠핑장 기본 등급 — 첫 3개월 고정 (50~69점)</div>
                 </div>
-                <div class="zero-item">
-                    <div class="zero-check">&#x2713;</div>
-                    <div class="zero-text">
-                        최소 인원 미달? 리스크 없음
-                        <span>1주일 전 안내, 미달 시 자동 취소 (비용 0원)</span>
-                    </div>
+                <div class="grade-rate">20%</div>
+            </div>
+
+            <div class="grade-card grade-c">
+                <div class="grade-letter">C</div>
+                <div class="grade-info">
+                    <div class="name">신규/개선 필요</div>
+                    <div class="desc">운영 실적이 낮거나 개선 필요 (30~49점)</div>
                 </div>
-                <div class="zero-item">
-                    <div class="zero-check">&#x2713;</div>
-                    <div class="zero-text">
-                        정산도 자동
-                        <span>체험 종료 후 시스템에서 자동 정산 처리</span>
-                    </div>
+                <div class="grade-rate">15%</div>
+            </div>
+
+            <div class="grade-card grade-d">
+                <div class="grade-letter">D</div>
+                <div class="grade-info">
+                    <div class="name">경고 등급</div>
+                    <div class="desc">안전사고 또는 심각한 CS 이슈 (30점 미만)</div>
                 </div>
+                <div class="grade-rate">10%</div>
+            </div>
+
+            <h3>등급 산정 기준 (100점 만점)</h3>
+            <table class="role-table">
+                <thead>
+                    <tr><th>평가 항목</th><th>배점</th><th>설명</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>체험 성사율</strong></td><td><strong>40점</strong></td><td>신청한 체험 중 실제 진행된 비율 (가장 중요)</td></tr>
+                    <tr><td>월간 체험 신청 수</td><td>30점</td><td>적극적으로 체험을 신청하는 정도</td></tr>
+                    <tr><td>고객 만족도</td><td>10점</td><td>체험 참여자 NPS/리뷰 점수</td></tr>
+                    <tr><td>현장 협조도</td><td>10점</td><td>장소 세팅, 공급사 지원, 동선 관리</td></tr>
+                    <tr><td>정산 협조도</td><td>5점</td><td>세금계산서 적시 발행</td></tr>
+                    <tr><td>안전/CS</td><td>5점</td><td>감점 방식 — 안전사고 시 큰 폭 감점</td></tr>
+                </tbody>
+            </table>
+
+            <div class="warn-box">
+                <strong>평가 주기:</strong> 월간 점수 산정 → 분기(3개월) 평균으로 등급 확정 → 다음 달 1일부터 적용. 분기당 최대 1단계만 변동합니다. (단, 안전사고는 즉시 D등급 가능)
+            </div>
+
+            <h3>수익 시뮬레이션</h3>
+
+            <div class="sim-box">
+                <h4>&#x1F4CA; S등급 캠핑장 (월 8회 성사 기준)</h4>
+                <div class="sim-row"><span>월 체험 성사 횟수</span><span>8회</span></div>
+                <div class="sim-row"><span>회당 평균 초과 수익</span><span>200,000원</span></div>
+                <div class="sim-row"><span>S등급 분배율</span><span>30%</span></div>
+                <div class="sim-row total"><span>월 캠핑장 수익</span><span>480,000원</span></div>
+            </div>
+
+            <div class="sim-box">
+                <h4>&#x1F4CA; B등급 캠핑장 (월 5회 성사 기준)</h4>
+                <div class="sim-row"><span>월 체험 성사 횟수</span><span>5회</span></div>
+                <div class="sim-row"><span>회당 평균 초과 수익</span><span>200,000원</span></div>
+                <div class="sim-row"><span>B등급 분배율</span><span>20%</span></div>
+                <div class="sim-row total"><span>월 캠핑장 수익</span><span>200,000원</span></div>
+            </div>
+
+            <h3>정산 방법</h3>
+            <ul>
+                <li><strong>정산 주기:</strong> 월별 정산</li>
+                <li><strong>정산 방식:</strong> 세금계산서 기반</li>
+                <li><strong>확인 방법:</strong> 어드민 시스템 > 정산 관리에서 실시간 확인 가능</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>신규 캠핑장 우대:</strong> 최초 3개월간은 B등급(20%)이 고정 적용됩니다. 3개월 간의 운영 실적을 바탕으로 4개월차부터 정식 등급이 부여됩니다.
             </div>
         </section>
 
-        <!-- CURRENT STATUS -->
-        <section class="status">
-            <span class="section-tag">운영 현황</span>
-            <h2 class="section-title">이미 전국에서<br>운영되고 있습니다</h2>
-            <div class="status-grid">
-                <div class="status-card">
-                    <div class="status-num"><em>53</em>개</div>
-                    <div class="status-label">체험 도입 캠핑장</div>
-                </div>
-                <div class="status-card">
-                    <div class="status-num"><em>30</em>+</div>
-                    <div class="status-label">체험 종류</div>
-                </div>
-                <div class="status-card">
-                    <div class="status-num"><em>477</em>건</div>
-                    <div class="status-label">3개월 누적 예약</div>
-                </div>
-                <div class="status-card">
-                    <div class="status-num"><em>100</em>만+</div>
-                    <div class="status-label">캠핏 월간 이용자</div>
-                </div>
+        <!-- ============================================================ -->
+        <!-- 7장. MOQ 이해하기 -->
+        <!-- ============================================================ -->
+        <section class="chapter" id="ch7">
+            <span class="chapter-num">7장</span>
+            <h2>최소운영인원(MOQ)<br>이해하기</h2>
+
+            <h3>MOQ란?</h3>
+            <p><strong>MOQ(Minimum Operating Quantity)</strong>는 체험을 진행하기 위한 최소 참여 인원입니다. 공급사가 캠핑장까지 출장하여 체험을 진행하려면 일정 수준 이상의 참여자가 필요하기 때문입니다.</p>
+
+            <h3>체험별 MOQ 기준</h3>
+            <p>MOQ는 체험 유형에 따라 다릅니다. 이동식 동물원처럼 장비·동물 운송이 필요한 체험은 MOQ가 높고, 공예처럼 소규모로 가능한 체험은 MOQ가 낮습니다.</p>
+
+            <h3>MOQ 미달 시</h3>
+            <ul>
+                <li>체험 <strong>7일 전(D-7)</strong>에 MOQ 충족 여부를 확인합니다</li>
+                <li>미달 시 해당 회차는 <strong>자동 취소 또는 연기</strong>됩니다</li>
+                <li><strong>캠지기님에게 비용은 전혀 발생하지 않습니다</strong></li>
+                <li>이미 결제한 캠퍼에게는 자동 환불 처리됩니다</li>
+            </ul>
+
+            <h3>MOQ 충족률을 높이는 방법</h3>
+
+            <div class="card-full">
+                <h5>&#x1F4F1; 캠핏 CRM 자동 안내 (캠핏이 합니다)</h5>
+                <p>숙박 예약자에게 최적 타이밍에 체험 참여를 안내합니다. 예약 직후 / D-3 / D-1 저녁 / 당일 체크인 시점에 알림톡과 푸시가 발송됩니다.</p>
+            </div>
+
+            <div class="card-full">
+                <h5>&#x1F4E2; 캠지기 자체 홍보 협조 (효과적!)</h5>
+                <p>캠핑장 현장 안내판, SNS 게시, 입장 시 구두 안내 등이 MOQ 충족에 큰 도움이 됩니다. 특히 현장 안내는 비예약 캠퍼의 당일 참여를 유도할 수 있습니다.</p>
+            </div>
+
+            <div class="card-full">
+                <h5>&#x1F30F; 인근 캠핑장 캠퍼 모집 (원정 체험)</h5>
+                <p>주변 캠핑장에 머무는 캠퍼도 참여 가능합니다. 캠핏 앱에서 주변 체험 검색을 통해 인근 캠퍼까지 모집합니다.</p>
+            </div>
+
+            <div class="tip-box">
+                <strong>TIP:</strong> MOQ 충족 현황은 어드민의 <strong>MOQ 캘린더</strong>에서 실시간으로 확인할 수 있습니다. 충족률이 낮은 경우 캠핏 운영팀에서 추가 CRM 발송을 지원합니다.
             </div>
         </section>
 
-        <!-- FAQ -->
-        <section class="faq">
-            <span class="section-tag">FAQ</span>
-            <h2 class="section-title">자주 묻는 질문</h2>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <div class="faq-q">
-                        <span class="faq-q-mark">Q.</span>
-                        비용이 정말 없나요?
-                    </div>
-                    <p class="faq-a">네, 캠핑장에 부과되는 비용은 전혀 없습니다. 시스템 사용료, 공급사 섭외비, 홍보비 모두 캠핏이 부담합니다. 캠핑장은 체험을 선택하기만 하시면 됩니다.</p>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">
-                        <span class="faq-q-mark">Q.</span>
-                        최소 인원이 안 모이면 어떻게 되나요?
-                    </div>
-                    <p class="faq-a">체험 진행 여부는 최소 1주일 전에 안내드립니다. 최소 인원 미달 시 해당 회차는 자동 취소되며, 캠핑장에 어떤 비용이나 페널티도 없습니다.</p>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">
-                        <span class="faq-q-mark">Q.</span>
-                        체험은 언제 진행되나요?
-                    </div>
-                    <p class="faq-a">기본적으로 매주 토요일에 진행됩니다. 어린이날, 크리스마스 등 특별한 날에는 주중에도 운영합니다. 향후 토요일 하루 2회 이상 운영으로 확대할 예정입니다.</p>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">
-                        <span class="faq-q-mark">Q.</span>
-                        수익은 어떻게 받나요?
-                    </div>
-                    <p class="faq-a">체험 예약이 최소 운영 인원을 초과하면, 초과분 수익의 20~30%를 캠핑장이 가져갑니다. 등급이 높을수록 분배율도 올라갑니다. 정산은 시스템에서 자동 처리됩니다.</p>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">
-                        <span class="faq-q-mark">Q.</span>
-                        등급은 어떻게 올라가나요?
-                    </div>
-                    <p class="faq-a">월간 체험 요청 수, 성공률, 고객 만족도, 현장 협조도 등을 종합 평가합니다. 분기마다 등급이 조정되며, 적극적으로 운영할수록 빠르게 S등급에 도달할 수 있습니다.</p>
-                </div>
+        <!-- ============================================================ -->
+        <!-- 8장. 체험 장소 세팅 가이드 -->
+        <!-- ============================================================ -->
+        <section class="chapter" id="ch8">
+            <span class="chapter-num">8장</span>
+            <h2>체험 장소 세팅 가이드</h2>
+
+            <h3>야외 체험 장소 세팅</h3>
+
+            <h4>적합한 공간</h4>
+            <ul>
+                <li><strong>잔디밭, 공터, 광장</strong> — 넓고 평탄한 공간이 이상적</li>
+                <li>캠핑장 중앙이나 주요 동선 근처가 노출 효과 최고</li>
+                <li>최소 면적: 체험 종류에 따라 다르지만, 일반적으로 10m x 10m 이상</li>
+            </ul>
+
+            <h4>필요 시설</h4>
+            <ul>
+                <li><strong>전기:</strong> 공급사 장비 운영에 필요 (콘센트 1~2개 이상)</li>
+                <li><strong>수도:</strong> 위생·청소용 (특히 동물/요리 체험)</li>
+                <li><strong>그늘막/타프:</strong> 여름철 필수, 그 외 계절은 선택</li>
+            </ul>
+
+            <h4>레이아웃 예시</h4>
+            <ul>
+                <li>체험 진행 공간 (메인) — 가장 넓게 확보</li>
+                <li>대기/관람 공간 — 보호자 대기석</li>
+                <li>안전거리 — 체험 공간과 캠핑 사이트 사이 최소 3m</li>
+                <li>공급사 차량 주차 — 장비 하차 후 이동이 편리한 위치</li>
+            </ul>
+
+            <h3>실내 공간이 없을 때</h3>
+            <ul>
+                <li><strong>대형 타프/천막</strong> 활용 — 급한 비에 대비 가능</li>
+                <li><strong>야외 전용 체험 선택</strong> — 숲 체험, 이동식 동물원, 스포츠 등</li>
+                <li><strong>우천 시 대비:</strong> 캐노피, 카라반, 다용도실 활용</li>
+                <li><strong>차량형 체험:</strong> 푸드트럭, 이동식 부스 형태는 별도 공간 불필요</li>
+            </ul>
+
+            <h3>실내 공간이 있을 때</h3>
+            <ul>
+                <li>교실, 강당, 세미나실, 식당 등 활용</li>
+                <li><strong>공예/과학/요리 체험에 최적</strong> — 테이블·의자가 있으면 바로 가능</li>
+                <li>우천 대비 <strong>올웨더 체험 편성</strong>이 가능해져 MOQ 충족률 상승</li>
+            </ul>
+
+            <div class="tip-box">
+                <strong>TIP:</strong> 실내외 모두 가능한 캠핑장은 시즌에 관계없이 체험 편성이 가능하여 등급 상승에 유리합니다.
             </div>
         </section>
 
-        <!-- CTA -->
-        <section class="cta" id="apply">
-            <h2>지금 바로<br><em>체험 캠핑장</em>이 되어보세요</h2>
-            <p>아래 버튼을 누르시면<br>캠핏 담당자가 빠르게 연락드리겠습니다.</p>
-            <a href="https://forms.gle/rnMxfM4fq4QSRwyL8" class="cta-btn" target="_blank">체험 도입 신청하기</a>
-            <p class="cta-contact">문의: cskim@nextedition.co.kr</p>
+        <!-- ============================================================ -->
+        <!-- 9장. 캠지기 현장 운영 가이드 -->
+        <!-- ============================================================ -->
+        <section class="chapter" id="ch9">
+            <span class="chapter-num">9장</span>
+            <h2>캠지기 현장 운영 가이드</h2>
+
+            <h3>체험 전 (D-3 ~ D-1)</h3>
+            <ul class="checklist">
+                <li><span class="ck">&#x2713;</span>체험 장소 확보 및 정리 (잔디 정리, 장애물 제거)</li>
+                <li><span class="ck">&#x2713;</span>캠퍼 대상 현장 안내 준비 (안내판, 방송, 키오스크)</li>
+                <li><span class="ck">&#x2713;</span>공급사 진입 동선 확인 (차량 주차 위치, 장비 하차 경로)</li>
+                <li><span class="ck">&#x2713;</span>전기/수도 사용 가능 여부 최종 점검</li>
+            </ul>
+
+            <h3>체험 당일</h3>
+            <ul class="checklist">
+                <li><span class="ck">&#x2713;</span>공급사 도착 시 맞이 및 장소 안내</li>
+                <li><span class="ck">&#x2713;</span>전기/수도/와이파이 등 시설 제공</li>
+                <li><span class="ck">&#x2713;</span>체험 진행 중 캠퍼 동선 관리 (혼잡 방지)</li>
+                <li><span class="ck">&#x2713;</span>비예약 캠퍼에게 현장 참여 안내 (QR코드로 즉석 결제 가능)</li>
+                <li><span class="ck">&#x2713;</span>안전 이상 징후 모니터링</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>QR 즉석 결제:</strong> 사전 예약하지 않은 캠퍼도 현장에서 QR코드를 스캔하여 바로 결제·참여할 수 있습니다. 이는 MOQ 충족률 향상에도 도움이 됩니다.
+            </div>
+
+            <h3>체험 후</h3>
+            <ul class="checklist">
+                <li><span class="ck">&#x2713;</span>장소 원상복구 확인</li>
+                <li><span class="ck">&#x2713;</span>공급사 피드백 전달 (좋았던 점, 개선 필요 사항)</li>
+                <li><span class="ck">&#x2713;</span>이슈 발생 시 캠핏 운영팀 보고 (사고, 불만, 시설 파손 등)</li>
+            </ul>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- 10장. 체험 편성 전략 -->
+        <!-- ============================================================ -->
+        <section class="chapter" id="ch10">
+            <span class="chapter-num">10장</span>
+            <h2>체험 편성 전략<br>(캠지기를 위한 팁)</h2>
+
+            <div class="card-full">
+                <h5>&#x1F4C5; 주말(토요일) 고정 편성</h5>
+                <p>"이 캠핑장은 매주 토요일 체험이 있다"는 인식이 생기면, 캠퍼가 토요일 기준으로 예약을 잡게 됩니다. 고정 편성이 예약률 상승의 핵심입니다.</p>
+            </div>
+
+            <div class="card-full">
+                <h5>&#x1F389; 시즌/이벤트 특별 편성</h5>
+                <p>어린이날, 크리스마스, 할로윈, 개학 시즌 등에 특별 체험을 편성하세요. 시즌 체험은 조기 매진 확률이 높고, SNS 바이럴 효과도 큽니다.</p>
+            </div>
+
+            <div class="card-full">
+                <h5>&#x2600;&#xFE0F; 체크아웃일 오전 체험</h5>
+                <p>체크아웃 전 빈 시간(오전 9~11시)에 체험을 편성하면, 캠퍼의 마지막 순간까지 만족도를 높일 수 있습니다.</p>
+            </div>
+
+            <div class="card-full">
+                <h5>&#x1F4CD; 중앙/통로 배치</h5>
+                <p>체험 장소를 캠핑장 중앙이나 주요 통로에 배치하면 지나가는 캠퍼의 자연스러운 참여를 유도할 수 있습니다.</p>
+            </div>
+
+            <div class="card-full">
+                <h5>&#x1F3AA; 월 1회 "체험 마켓 데이"</h5>
+                <p>한 날에 2~3개 체험을 동시 투입하면 축제 분위기가 연출됩니다. 캠퍼가 여러 체험을 한꺼번에 즐길 수 있어 만족도와 객단가가 동시에 상승합니다.</p>
+            </div>
+
+            <div class="card-full">
+                <h5>&#x1F476; 연령대별 선택 가이드</h5>
+                <p>영유아(3~5세)는 동물원·숲놀이, 초등 저학년(6~8세)은 과학캠프·공예, 초등 고학년(9~12세)은 영어캠프·액티비티가 인기입니다.</p>
+            </div>
+
+            <div class="card-full">
+                <h5>&#x26C5; 비수기 활용 전략</h5>
+                <p>비수기에 체험을 편성하면 "비수기에도 갈 이유"를 만들 수 있습니다. 실내형 체험(공예, 요리, 과학)을 중심으로 비수기 매출 방어에 활용하세요.</p>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- 11장. 안전 관리 -->
+        <!-- ============================================================ -->
+        <section class="chapter" id="ch11">
+            <span class="chapter-num">11장</span>
+            <h2>안전 관리</h2>
+
+            <h3>기본 안전 수칙</h3>
+            <ul>
+                <li>체험 공간과 캠핑 사이트 간 <strong>안전거리 확보</strong> (최소 3m)</li>
+                <li>체험 중 <strong>보호자 동반</strong> 원칙 (미취학 아동 필수)</li>
+                <li>응급약품(구급상자) 비치 및 위치 공유</li>
+                <li>체험 시작 전 <strong>안전 브리핑</strong> 실시 (공급사 담당)</li>
+            </ul>
+
+            <h3>동물 체험 안전</h3>
+            <div class="warn-box">
+                <ul style="margin-bottom:0;padding-left:18px;">
+                    <li><strong>알레르기:</strong> 체험 전 알레르기 여부 확인 필수</li>
+                    <li><strong>위생:</strong> 체험 후 손 씻기 스테이션 운영</li>
+                    <li><strong>동물 관리:</strong> 공급사가 전담, 캠퍼의 무단 접촉 방지</li>
+                    <li><strong>울타리:</strong> 동물 체험 공간 울타리 설치 확인</li>
+                </ul>
+            </div>
+
+            <h3>야외 체험 안전</h3>
+            <ul>
+                <li><strong>날씨:</strong> 폭우/강풍 시 체험 중단 기준 사전 합의</li>
+                <li><strong>지형:</strong> 경사면, 물가 근처 체험 금지</li>
+                <li><strong>곤충:</strong> 모기·벌 주의 안내, 기피제 비치</li>
+            </ul>
+
+            <h3>응급상황 대응</h3>
+            <ol>
+                <li>즉시 체험 중단 및 부상자 안전 확보</li>
+                <li>캠핑장 관리자(캠지기) 호출</li>
+                <li>119 신고 (필요 시)</li>
+                <li>캠핏 운영팀 즉시 보고</li>
+                <li>사고 경위 기록 및 사진 촬영</li>
+            </ol>
+
+            <h3>보험 및 책임 범위</h3>
+            <table class="role-table">
+                <thead>
+                    <tr><th>주체</th><th>책임 범위</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>공급사</strong></td><td>체험 프로그램 진행 중 발생하는 사고에 대한 1차 책임. 공급사 보험 적용.</td></tr>
+                    <tr><td><strong>캠핏</strong></td><td>중개 플랫폼으로서 공급사 검증 및 관리 책임. 플랫폼 보험 적용.</td></tr>
+                    <tr><td><strong>캠핑장</strong></td><td>시설(전기, 지형 등) 관련 안전 관리 책임. 장소 제공자로서 기본 주의의무.</td></tr>
+                </tbody>
+            </table>
+
+            <div class="danger-box">
+                <strong>중요:</strong> 안전사고가 발생하면 원인과 관계없이 즉시 D등급이 부여되며, 원인 조사 후 책임 소재에 따라 등급이 조정됩니다. 2개월 연속 D등급 시 계약 해지 검토 대상이 됩니다.
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- 12장. FAQ -->
+        <!-- ============================================================ -->
+        <section class="chapter" id="ch12">
+            <span class="chapter-num">12장</span>
+            <h2>자주 묻는 질문 (FAQ)</h2>
+
+            <div class="faq-item">
+                <div class="faq-q"><span class="faq-q-mark">Q.</span>캠지기가 내야 하는 비용이 있나요?</div>
+                <p class="faq-a"><strong>없습니다.</strong> 시스템 사용료, 공급사 섭외비, 홍보비, 고객 모집 비용 모두 캠핏이 부담합니다. 캠지기님은 체험 장소와 기본 시설(전기/수도)만 제공해주시면 됩니다.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q"><span class="faq-q-mark">Q.</span>최소인원이 안 모이면 어떻게 되나요?</div>
+                <p class="faq-a">체험 7일 전(D-7)에 최소운영인원 충족 여부를 확인합니다. 미달 시 해당 회차는 자동 취소되며, 캠지기님에게 어떤 비용이나 페널티도 없습니다. 캠퍼에게는 자동 환불됩니다.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q"><span class="faq-q-mark">Q.</span>어떤 체험을 골라야 할지 모르겠어요.</div>
+                <p class="faq-a">캠핏이 캠핑장의 위치, 시설, 주요 고객층(아이 연령대 등)을 고려하여 추천해드립니다. 어드민에서도 인기 체험 순으로 확인할 수 있습니다.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q"><span class="faq-q-mark">Q.</span>비가 오면 어떻게 해요?</div>
+                <p class="faq-a">실내 공간이 있으면 실내형 체험으로 전환하고, 없으면 차량형 체험(푸드트럭, 이동식 부스)으로 대체하거나 취소합니다. 우천 취소 시에도 비용은 없습니다.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q"><span class="faq-q-mark">Q.</span>체험 품질이 안 좋으면 어떡하죠?</div>
+                <p class="faq-a">캠핏 운영팀에 피드백을 주시면, 공급사 교체 또는 개선 조치를 진행합니다. 공급사의 품질 이슈는 캠지기님의 등급에 영향을 주지 않습니다.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q"><span class="faq-q-mark">Q.</span>한 달에 몇 번까지 가능해요?</div>
+                <p class="faq-a">횟수 제한이 없습니다. 매주 진행할 수도 있고, 하루에 2개 이상의 체험을 동시에 편성할 수도 있습니다. 적극적으로 운영할수록 등급이 올라갑니다.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q"><span class="faq-q-mark">Q.</span>평일에도 되나요?</div>
+                <p class="faq-a">현재는 주말(토요일) 위주로 운영됩니다. 어린이날, 크리스마스 등 특별 기간에는 주중 편성이 가능하며, 향후 평일 확대도 계획 중입니다.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q"><span class="faq-q-mark">Q.</span>정산은 언제, 어떻게 받나요?</div>
+                <p class="faq-a">월별로 정산되며, 세금계산서 기반으로 처리됩니다. 어드민 시스템의 '정산 관리' 메뉴에서 정산 내역을 실시간 확인할 수 있습니다.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q"><span class="faq-q-mark">Q.</span>내 등급은 어디서 확인하나요?</div>
+                <p class="faq-a">어드민 대시보드에서 현재 등급, 점수, 평가 항목별 상세를 확인할 수 있습니다. 월간 성적표도 자동 발송됩니다.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q"><span class="faq-q-mark">Q.</span>별도 계약이 필요한가요?</div>
+                <p class="faq-a">네, 캠핏-캠핑장 간 '체험 제휴 계약'을 체결합니다. 계약서에는 수익 분배, 역할 분담, 안전 책임 등이 명시됩니다.</p>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- 13장. 어드민 시스템 사용법 -->
+        <!-- ============================================================ -->
+        <section class="chapter" id="ch13">
+            <span class="chapter-num">13장</span>
+            <h2>어드민 시스템 사용법</h2>
+
+            <p>캠핏 파트너 전용 어드민 시스템에서 체험 신청, 예약 관리, 정산까지 모든 것을 처리할 수 있습니다.</p>
+
+            <h3>홈 대시보드</h3>
+            <p>매칭 요청 현황, 오늘의 체험 현장, 최근 알림 등을 한눈에 확인합니다.</p>
+            <div class="system-shot">
+                <img src="images/체험 홈.png" alt="체험 홈 대시보드">
+                <div class="system-shot-label">홈 대시보드 — <span>매칭 요청, 취소/환불, 오늘의 현장을 한눈에</span></div>
+            </div>
+
+            <h3>체험 관리 (제휴 신청)</h3>
+            <p>30개 이상의 체험 목록에서 원하는 프로그램을 골라 제휴를 신청합니다. 각 체험의 소요시간, 적정 인원, 대상 연령, 가격 등을 확인할 수 있습니다.</p>
+            <div class="system-shot">
+                <img src="images/체험 관리.png" alt="체험 관리">
+                <div class="system-shot-label">체험 관리 — <span>원하는 체험을 골라 제휴 신청</span></div>
+            </div>
+
+            <h3>MOQ 현황 모니터링</h3>
+            <p>캘린더 형태로 각 체험의 최소운영인원 충족 현황을 실시간 확인합니다. 충족률이 낮은 체험은 캠핏 운영팀에서 추가 CRM을 발송합니다.</p>
+            <div class="system-shot">
+                <img src="images/최소 운영 인원 관리.png" alt="MOQ 관리">
+                <div class="system-shot-label">MOQ 캘린더 — <span>최소 인원 충족 여부를 날짜별로 확인</span></div>
+            </div>
+
+            <h3>예약 현황 확인</h3>
+            <p>체험별 예약자 목록, 참여 인원, 결제 상태, 연락처 등을 실시간으로 확인합니다.</p>
+            <div class="system-shot">
+                <img src="images/예약 관리.png" alt="예약 관리">
+                <div class="system-shot-label">예약 관리 — <span>참여자 정보와 예약 상태 실시간 확인</span></div>
+            </div>
+
+            <h3>정산 내역 확인</h3>
+            <p>월별 매출 추이, 정산 내역, 수수료 구조를 투명하게 확인합니다. 세금계산서 발행 관련 안내도 제공됩니다.</p>
+            <div class="system-shot">
+                <img src="images/정산 관리.png" alt="정산 관리">
+                <div class="system-shot-label">정산 관리 — <span>매출 추이와 정산 내역을 투명하게</span></div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- 14장. 성공 사례 -->
+        <!-- ============================================================ -->
+        <section class="chapter" id="ch14">
+            <span class="chapter-num">14장</span>
+            <h2>성공 사례 /<br>우수 캠핑장 인터뷰</h2>
+
+            <div class="info-box">
+                <strong>안내:</strong> 현재 파일럿 운영 중인 캠핑장들의 사례를 수집 중입니다. 정식 운영 후 실제 데이터와 인터뷰를 담아 업데이트할 예정입니다.
+            </div>
+
+            <h3>파일럿 운영 캠핑장</h3>
+            <p>현재 아래 캠핑장에서 주 1회(토요일) 고정 체험이 운영되고 있습니다:</p>
+            <ul>
+                <li>학교안풍경</li>
+                <li>모아이</li>
+                <li>낭만팩토리</li>
+                <li>쉼</li>
+                <li>딥포레스트</li>
+            </ul>
+
+            <h3>수집 예정 데이터</h3>
+            <ul>
+                <li>체험 도입 전후 예약률 비교</li>
+                <li>체험 도입 전후 매출 변화</li>
+                <li>체험 도입 후 리뷰 변화</li>
+                <li>캠지기님 실제 인터뷰</li>
+            </ul>
+
+            <div class="tip-box">
+                <strong>TIP:</strong> 우수 운영 사례가 확정되면 이 가이드에 반영되며, 별도 알림으로 안내해드립니다.
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- 15장. 부록 -->
+        <!-- ============================================================ -->
+        <section class="chapter" id="ch15">
+            <span class="chapter-num">15장</span>
+            <h2>부록</h2>
+
+            <h3>등급제 Gate 조건</h3>
+            <p>점수가 충분하더라도 아래 최소 조건을 충족하지 못하면 해당 등급을 받을 수 없습니다.</p>
+            <table class="role-table">
+                <thead>
+                    <tr><th>등급</th><th>최소 성사율</th><th>최소 신청 수</th><th>안전사고</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>S</strong></td><td>&ge; 70%</td><td>월 5건 이상</td><td>0건</td></tr>
+                    <tr><td><strong>A</strong></td><td>&ge; 60%</td><td>월 3건 이상</td><td>0건</td></tr>
+                    <tr><td><strong>B</strong></td><td>&ge; 40%</td><td>월 2건 이상</td><td>-</td></tr>
+                </tbody>
+            </table>
+
+            <h3>용어 사전</h3>
+            <table class="role-table">
+                <thead>
+                    <tr><th>용어</th><th>설명</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>MOQ</strong></td><td>Minimum Operating Quantity. 체험을 진행하기 위한 최소 참여 인원.</td></tr>
+                    <tr><td><strong>성사율</strong></td><td>체험 신청 건 중 실제로 진행(성사)된 비율.</td></tr>
+                    <tr><td><strong>공급사</strong></td><td>체험 프로그램을 직접 운영하는 업체 또는 개인 강사.</td></tr>
+                    <tr><td><strong>제휴 신청</strong></td><td>캠핑장이 어드민에서 원하는 체험을 선택하여 매칭을 요청하는 행위.</td></tr>
+                    <tr><td><strong>CRM</strong></td><td>Customer Relationship Management. 캠퍼에게 체험 참여를 안내하는 알림톡/푸시 등의 자동화 발송.</td></tr>
+                    <tr><td><strong>어드민</strong></td><td>캠핑장 전용 관리 시스템. 체험 신청, 예약 관리, 정산 등을 처리.</td></tr>
+                    <tr><td><strong>초과 수익</strong></td><td>MOQ를 초과한 참여 인원에서 발생한 수익.</td></tr>
+                    <tr><td><strong>등급</strong></td><td>캠핑장의 체험 운영 실적을 평가한 5단계(S/A/B/C/D) 등급.</td></tr>
+                    <tr><td><strong>원정 체험</strong></td><td>해당 캠핑장 숙박 캠퍼가 아닌, 인근 캠핑장 캠퍼가 체험에 참여하는 것.</td></tr>
+                </tbody>
+            </table>
+
+            <h3>캠핏 운영팀 연락처</h3>
+            <div class="card-full">
+                <h5>&#x1F4E7; 이메일</h5>
+                <p>cskim@nextedition.co.kr</p>
+            </div>
+            <div class="card-full">
+                <h5>&#x1F3E2; 운영사</h5>
+                <p>주식회사 넥스트에디션 | 서울특별시 마포구</p>
+            </div>
         </section>
 
         <!-- FOOTER -->
         <footer class="footer">
-            <p>(주)넥스트에디션 | 캠핏(CAMFIT)<br>서울특별시 마포구</p>
+            <p><strong style="color:rgba(255,255,255,0.5)">CAMFIT Experience Guide v0.1</strong><br>
+            (주)넥스트에디션 | 캠핏(CAMFIT)<br>
+            본 가이드의 내용은 캠핏 체험 서비스의 업데이트에 따라 변경될 수 있습니다.<br><br>
+            <a href="https://forms.gle/rnMxfM4fq4QSRwyL8" target="_blank">체험 도입 신청</a></p>
         </footer>
 
     </div>
 
-    <!-- FLOATING CTA -->
-    <div class="floating-cta" id="floatingCta">
-        <a href="https://forms.gle/rnMxfM4fq4QSRwyL8" class="floating-cta-btn" target="_blank">체험 도입 신청하기</a>
-    </div>
-
     <script>
-        const floatingCta = document.getElementById('floatingCta');
-        const hero = document.querySelector('.hero');
-        const ctaSection = document.getElementById('apply');
+        function toggleToc() {
+            document.getElementById('tocOverlay').classList.toggle('open');
+        }
 
-        window.addEventListener('scroll', () => {
-            const heroBottom = hero.getBoundingClientRect().bottom;
-            const ctaTop = ctaSection.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-
-            if (heroBottom < 0 && ctaTop > windowHeight) {
-                floatingCta.classList.add('visible');
-            } else {
-                floatingCta.classList.remove('visible');
+        function closeToc(e) {
+            if (e.target === e.currentTarget) {
+                e.currentTarget.classList.remove('open');
             }
-        });
+        }
+
+        function closeTocDirect() {
+            document.getElementById('tocOverlay').classList.remove('open');
+        }
     </script>
 </body>
 </html>
